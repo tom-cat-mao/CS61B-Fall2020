@@ -3,22 +3,27 @@ public class Lists1Exercises {
     /** Returns an IntList identical to L, but with
       * each element incremented by x. L is not allowed
       * to change. */
-        public static IntList incrList(IntList L, int x) {
+    public static IntList incrList(IntList L, int x) {
 
-          if (L.rest == null) {
-            return new IntList(null, L.x + x);
-          }
+      if (L.rest == null) {
+        return new IntList(null, L.x + x);
+      }
 
-          return new IntList(incrList(L.rest, x), L.x + x);
-
-        }
+      return new IntList(incrList(L.rest, x), L.x + x);
+    }
 
     /** Returns an IntList identical to L, but with
       * each element incremented by x. Not allowed to use
       * the 'new' keyword. */
-    public static IntList dincrList(IntList L, int x) {
+    public static void dincrList(IntList L, int _x) {
         /* Your code here. */
-        return L;
+	    if (L.rest == null) {
+		    L.x += _x;
+		    return;
+	    }
+
+	    L.x += _x;
+	    Lists1Exercises.dincrList(L.rest, _x);
     }
 
     public static void main(String[] args) {
@@ -33,7 +38,15 @@ public class Lists1Exercises {
 		t_L_c = t_L_c.rest;
 	}
 
-        System.out.println(L.size());
+  System.out.println(L.size());
+
+	Lists1Exercises.dincrList(L, 4);
+
+	while (L != null) {
+		System.out.println(L.get(0));
+		L = L.rest;
+	}
+
 
         // Test your answers by uncommenting. Or copy and paste the
         // code for incrList and dincrList into IntList.java and
