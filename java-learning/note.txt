@@ -1,0 +1,4 @@
+sentinal nodes to every structure.
+which can avoid some bug inside the data structure.
+The first node is always sentinal.next
+you don't have to worry about the null point at first.
