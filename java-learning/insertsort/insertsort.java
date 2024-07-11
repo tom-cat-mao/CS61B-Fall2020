@@ -8,6 +8,7 @@ public class insertsort {
         }
     }
 }
+
 class insertationsort {
     private int [] arr;
     insertationsort(int[] arr)
