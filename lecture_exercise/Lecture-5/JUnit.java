@@ -1,73 +1,97 @@
 public class JUnit<T> {
-    private IntList<T> sentinel;
-    private int size;
+	private IntList<T> sentinel;
+	private int size;
 
-    private class IntList<T> {
-        T x;
-        IntList<T> next;
-        IntList<T> prev;
-    
-        public IntList(T x, IntList next, IntList prev) {
-            this.x = x;
-            this.prev = prev;
-            this.next = next;
-        }
+	private class IntList<T> {
+		T x;
+		IntList<T> next;
+		IntList<T> prev;
+	
+		public IntList(T x, IntList<T> next, IntList<T> prev) {
+			this.x = x;
+			this.prev = prev;
+			this.next = next;
+		}
+	}
+	
+	public JUnit() {
+		this.sentinel = new IntList<>(null, null, null);
+		this.sentinel.next = this.sentinel;
+		this.sentinel.prev = this.sentinel;
+		this.size = 0;
+	}
 
-    }
-    
-    public JUnit() {
-        this.sentinel = new IntList(114514, null, null);
-        this.size = 0;
-    }
+	public JUnit(T x) {
+		this();
+		addLast(x);
+	}
 
-    public JUnit(T x) {
-        this.sentinel = new IntList(114514, null, null);
-        this.sentinel.next = new IntList(x, sentinel, sentinel);
-        this.sentinel.prev = sentinel.next;
-        size = 1;
-    }
+	public void addFirst(T x) {
+		IntList<T> temp = new IntList<>(x, sentinel.next, sentinel);
+		sentinel.next.prev = temp;
+		sentinel.next = temp;
+		size++;
+	}
 
-    public void addFirst(T x) {
-        IntList<T> temp = new IntList(x, sentinel.next, sentinel);
-        temp.next.prev = temp;
-        sentinel.next = temp;
-    }
+	public void addLast(T x) {
+		IntList<T> temp = new IntList<>(x, sentinel, sentinel.prev);
+		sentinel.prev.next = temp;
+		sentinel.prev = temp;
+		size++;
+	}
 
-    public void addLast(T x) {
-        IntList<T> temp = new IntList(x, sentinel, sentinel.prev);
-        sentinel.prev = temp;
-        temp.prev.next = temp;
-    }
+	public T getFirst() {
+		if (size == 0) {
+			return null;
+		}
+		return sentinel.next.x;
+	}
 
-    public T getFirst() {
-        return sentinel.next.x;
-    }
+	public T getLast() {
+		if (size == 0) {
+			return null;
+		}
+		return sentinel.prev.x;
+	}
 
-    public T getLast() {
-        return sentinel.prev.x;
-    }
+	public T popFirst() {
+		if (size == 0) {
+			return null;
+		}
+		T temp = sentinel.next.x;
+		sentinel.next = sentinel.next.next;
+		sentinel.next.prev = sentinel;
+		size--;
+		return temp;
+	}
 
-    public T popFirst() {
+	public T popLast() {
+		if (size == 0) {
+			return null;
+		}
+		T temp = sentinel.prev.x;
+		sentinel.prev = sentinel.prev.prev;
+		sentinel.prev.next = sentinel;
+		size--;
+		return temp;
+	}
 
-        if (size == 0) {
-            return null;
-        }
+	public static void testDream() {
+		int arr[] = {1, 2, 3, 4, 5};
+		JUnit<Integer> list = new JUnit<>();
+		for (int i : arr) {
+			list.addLast(i);
+		}
 
-        T temp = sentinel.next.x;
-        sentinel.next = sentinel.next.next;
-        sentinel.next.prev = sentinel;
-        return temp;
-    }
+		System.out.println(list.getFirst()); // Should print 1
+		System.out.println(list.getLast());  // Should print 5
+		System.out.println(list.popFirst()); // Should print 1
+		System.out.println(list.getFirst()); // Should print 2
+		System.out.println(list.popLast());  // Should print 5
+		System.out.println(list.getLast());  // Should print 4
+	}
 
-    public T popLast() {
-
-        if (size == 0) {
-            return null;
-        }
-
-        T temp = sentinel.prev.x;
-        sentinel.prev = sentinel.prev.prev;
-        sentinel.prev.next = sentinel;
-        return temp;
-    }
+	public static void main(String[] args) {
+		testDream();
+	}
 }
