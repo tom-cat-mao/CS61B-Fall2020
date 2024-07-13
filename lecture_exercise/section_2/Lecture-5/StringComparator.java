@@ -1,14 +1,14 @@
 public class StringComparator {
     public interface NullSafeStringComparator {
-        /** Return a negative number if s1 is 'less than' s2, 0 if 'equal',
-         * and a positive number otherwise. Null is considered less than 
+        /** Return a positive number if s1 is 'less than' s2, 
+         * and a negative number otherwise. Null is considered less than 
          * any String. If both inputs are null return 0.
          */
 
          public int compare(String s1, String s2);
     }
 
-    public class LengthComparator implements NullSafeStringComparator {
+    public static class LengthComparator implements NullSafeStringComparator {
 
         @Override
         public int compare(String s1, String s2) {
@@ -38,7 +38,7 @@ public class StringComparator {
         return maxStr;
     } // bracket on this line for vertical space reasons
 
-    public static String[][] step(String[][] arr) {
+    public static void step(String[][] arr, NullSafeStringComparator sc) {
         /* Recall: All String references in stepped are null by
          * default, so the edges are correct on initialization.
          */
@@ -49,18 +49,45 @@ public class StringComparator {
             stepped[i +1] = new String[arr[i].length + 2];
             System.arraycopy(arr[i], 0, stepped[i + 1], 1, arr[i].length);
         }
+
+        // Initialize first and last rows
+        stepped[0] = new String[arr[0].length + 2];
+        stepped[arr.length + 1] = new String[arr[0].length + 2];
         
+        int[][] dir = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
         for (int i = 1; i <= arr.length; i++) {
             for (int j = 1; j <= arr[i - 1].length ; j++) {
                 String temp = stepped[i][j];
-
-                for (int k = -1; k <= i; k++) {
-
+                for (int[] d : dir) {
+                    if (sc.compare(temp, stepped[i + d[0]][j + d[1]]) > 0) {
+                        temp = stepped[i + d[0]][j + d[1]];
+                    }
                 }
-
+                arr[i - 1][j - 1] = temp;
             }
         }
 
-        return stepped;
     }
+
+    public static void main(String[] args) {
+        String[][] arr = {
+            {"Hello", "this", "is"},
+            {"a", "test", "to"}, 
+            {"figure", "out", "the"}, 
+            {"of", "the", "system"}
+        };
+
+        NullSafeStringComparator sc = new LengthComparator();
+
+        step(arr, sc);
+
+        for (String[] row : arr) {
+            for (String s : row) {
+                System.out.print(s + " ");
+            }
+            System.out.println();
+        }
+
+    } 
+
 }
