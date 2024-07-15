@@ -77,4 +77,14 @@ public class Body {
 
         return netForceY;
     }
+
+    public void update(double dt, double fx, double fy) {
+        //update the position and velocity of the body
+        double ax = fx / mass;
+        double ay = fy / mass;
+        xxVel += ax * dt;
+        yyVel += ay * dt;
+        xxPos += xxVel * dt;
+        yyPos += yyVel * dt; 
+    }
 }
