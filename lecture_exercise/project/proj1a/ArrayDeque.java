@@ -88,10 +88,17 @@ public class ArrayDeque<object> {
             return null;
         }
         else if (array.length - nextFirst - 1 > index) {
-            return array[array.length - nextFirst + index];
+            return array[1 + nextFirst + index];
         }
         else {
             return array[index - (array.length - nextFirst - 1)];
         }
+    }
+
+    public void printDeque() {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(get(i) + " ");
+        }
+        System.out.println();
     }
 }
