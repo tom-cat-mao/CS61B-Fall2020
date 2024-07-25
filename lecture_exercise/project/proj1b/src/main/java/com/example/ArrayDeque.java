@@ -1,12 +1,14 @@
-public class ArrayDeque<object> {
-    private object[] array;
+package com.example;
+
+public class ArrayDeque<T> implements Deque<T> {
+    private T[] array;
     private int nextFirst;
     private int nextLast;
     private int size;
 
     public ArrayDeque() {
         size = 0;
-        array = (object[]) new Object[8];
+        array = (T[]) new Object[8];
         nextFirst = 7;
         nextLast = 0;
     }
@@ -18,7 +20,7 @@ public class ArrayDeque<object> {
 
     /* 4 times the current array */
     public void resizearray() {
-        object[] newArray = (object[]) new Object[array.length * 4];
+        T[] newArray = (T[]) new Object[array.length * 4];
 
         /* copy all the items which was added from first to the newArray */
         System.arraycopy(this.array, nextFirst + 1, newArray, newArray.length - array.length + nextFirst + 1, array.length - nextFirst - 1);
@@ -36,7 +38,8 @@ public class ArrayDeque<object> {
 
     }
 
-    public void addFirst(object item) {
+    @Override
+    public void addFirst(T item) {
         /* we need to justify whether the array is oversized
          * the whole size should be at most 25% of the array length
         */
@@ -49,7 +52,8 @@ public class ArrayDeque<object> {
         size++;
     }
 
-    public void addLast(object item) {
+    @Override
+    public void addLast(T item) {
         if (isOversize()) {
             resizearray();
         }
@@ -59,35 +63,45 @@ public class ArrayDeque<object> {
         size++;
     }
 
-    public object removeFirst() {
+    @Override
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
 
+        if (nextFirst == array.length - 1) {
+            nextFirst = -1;
+        }
         nextFirst++;
-        object item = array[nextFirst];
+        T item = array[nextFirst];
         array[nextFirst] = null;
         size--;
         return item;
     }
 
-    public object removeLast() {
+    @Override
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
 
+        if (nextLast == 0) {
+            nextLast = array.length;
+        }
         nextLast--;
-        object item = array[nextLast];
+        T item = array[nextLast];
         array[nextLast] = null;
         size--;
         return item;
     }
 
+    @Override
     public int size() {
         return size;
     }
 
-    public object get(int index) {
+    @Override
+    public T get(int index) {
         if (index >= size) {
             return null;
         }
@@ -99,6 +113,7 @@ public class ArrayDeque<object> {
         }
     }
 
+    @Override
     public void printDeque() {
         for (int i = 0; i < array.length; i++) {
             System.out.print(get(i) + " ");

@@ -1,0 +1,25 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+	  {
+		"type": "java",
+		"name": "Debug (Launch) - Current File",
+		"request": "launch",
+		"mainClass": "${file}"
+	  },
+	  {
+		"type": "java",
+		"name": "Debug (Launch) - Main Class",
+		"request": "launch",
+		"mainClass": "com.example.Main"
+	  },
+	  {
+		"type": "java",
+		"name": "Debug (Attach) - Remote",
+		"request": "attach",
+		"hostName": "localhost",
+		"port": 5005
+	  }
+	]
+  }
+  

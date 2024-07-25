@@ -1,0 +1,21 @@
+plugins {
+    id('java')
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation('junit:junit:4.13.2')
+    
+    test {
+        useJUnit()
+        testLogging {
+            events 'passed', 'skipped', 'failed'
+        }
+        // Enable debugging for the test task on a different port
+        // jvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"]
+    }
+}
+
