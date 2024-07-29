@@ -1,0 +1,13 @@
+// use junit 4 to test the java method in the class
+
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13'
+}
