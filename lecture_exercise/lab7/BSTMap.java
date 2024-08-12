@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.Set;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
@@ -169,6 +170,12 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     /* put a new key-value pair */
     @Override
     public void put(K key, V value) {
+        if (size == 0) {
+            root = new BSTNode(key, value);
+            size++;
+            return;
+        }
+
         root = root.put(root, key, value);
     }
 
@@ -201,5 +208,9 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
         size--;
         return node.value;
+    }
+
+    public Iterator<K> iterator() {
+        throw new UnsupportedOperationException();
     }
 }
