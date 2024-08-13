@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2d35fd76-5463-4fdd-9843-b0cedfa57d01" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/BSTMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/BSTMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/BSTMap$BSTNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/BSTMap$BSTNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/BSTMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/BSTMap.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/lecture_exercise/project/proj1b">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/lecture_exercise/project/proj1golden">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/lecture_exercise/section-5/Lecture-11">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/lecture_exercise/section-6/Lecture-14">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tom-cat-mao&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tom-cat-mao/CS61B-Fall2020.git&quot;,
+    &quot;accountId&quot;: &quot;10fa8eb2-c9e4-47ed-b7c9-f38007a8d5d2&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2k1DkEbLDFBrN0ykuEy9m8JrpZn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tomcat/CS61B-Fall2020&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2d35fd76-5463-4fdd-9843-b0cedfa57d01" name="Changes" comment="" />
+      <created>1722442329683</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722442329683</updated>
+    </task>
+    <servers />
+  </component>
+</project>

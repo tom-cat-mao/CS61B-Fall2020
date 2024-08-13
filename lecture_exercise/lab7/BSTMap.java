@@ -1,5 +1,7 @@
 import java.util.Iterator;
+import java.util.TreeSet;
 import java.util.Set;
+import java.util.Stack;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
@@ -10,7 +12,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     private BSTNode root;
 
     /* defination of the BSTNode */
-    private class BSTNode {
+    private class BSTNode implements Iterable<K> {
 
         private K key;
         private V value;
@@ -133,6 +135,35 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
             System.out.println(root.key + " : " + root.value);
             printInOrder(root.right);
         }
+
+        public Iterator<K> iterator() {
+            return new BSTMapIter();
+        }
+
+        private class BSTMapIter implements Iterator<K> {
+            private BSTNode current;
+            private Stack<BSTNode> stack;
+
+            public BSTMapIter() {
+                stack = new Stack<BSTNode>();
+                current = root;
+            }
+
+            public boolean hasNext() {
+                return !stack.isEmpty() || current != null;
+            }
+
+            public K next() {
+                while (current != null) {
+                    stack.push(current);
+                    current = current.left;
+                }
+
+                BSTNode node = stack.pop();
+                current = node.right;
+                return node.key;
+            }
+        }
     }
 
     /* constructor */
@@ -196,8 +227,21 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         root.printInOrder(root);
     }
 
+    /* Return a Set view of the keys contained in this map. */
     public Set<K> keySet() {
-        throw new UnsupportedOperationException();
+        Set<K> keySet = new TreeSet<K>();
+        inOrderTraversal(root, keySet);
+        return keySet;
+    }
+
+    private void inOrderTraversal(BSTNode root, Set<K> keySet) {
+        if (root == null) {
+            return;
+        }
+
+        inOrderTraversal(root.left, keySet);
+        keySet.add(root.key);
+        inOrderTraversal(root.right, keySet);
     }
 
     public V remove(K key, V value) {
@@ -211,6 +255,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     }
 
     public Iterator<K> iterator() {
-        throw new UnsupportedOperationException();
+        return root.iterator();
     }
 }
