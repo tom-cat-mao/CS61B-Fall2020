@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d35fd76-5463-4fdd-9843-b0cedfa57d01" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/BSTMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/BSTMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/BSTMap$BSTNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/BSTMap$BSTNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/BSTMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/lab7/out/production/lab7/BSTMap.class" afterDir="false" />
+    <list default="true" id="2d35fd76-5463-4fdd-9843-b0cedfa57d01" name="Changes" comment="lecture 21 heap simulation uncomplete">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture_exercise/section-8/Lecture-21/HeapBST.java" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/section-8/Lecture-21/HeapBST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +81,19 @@
       <option name="presentableId" value="Default" />
       <updated>1722442329683</updated>
     </task>
+    <task id="LOCAL-00001" summary="lecture 21 heap simulation uncomplete">
+      <option name="closed" value="true" />
+      <created>1724153721841</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724153721841</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="lecture 21 heap simulation uncomplete" />
+    <option name="LAST_COMMIT_MESSAGE" value="lecture 21 heap simulation uncomplete" />
   </component>
 </project>

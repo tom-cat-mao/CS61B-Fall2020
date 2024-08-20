@@ -1,50 +1,105 @@
-package Lecture-21;
+/* Use BST to implement Jeap */
 
-import org.java.comparable.Comparable;
-
-/* this is a Heap simulation */
 public class HeapBST<T extends Comparable<T>> {
-    /* the size of the whole heap
-     * the root node of the heap
-     */
+
+    /* use array to represent the position more convinent */
+    private T[] heap;
     private int size;
-    private HeapNode<T> root;
 
-    public HeapBST() {
-        this.size = 0;
-        this.root = new HeapNode<T>(null);
+    /* constructor */
+    public HeapBST(int capacity) {
+        heap = (T[]) new Comparable[capacity];
+        size = 0;
     }
 
-    /* the node of the Heap */
-    private class HeapNode<T> {
-        T data;
-        HeapNode<T> left;
-        HeapNode<T> right;
-
-        /* the constructor */
-        public HeapNode(T data) {
-            this.data = data;
-            this.left = null;
-            this.right = null;
-        }
-    }
-
-    /* the insert method */
+    /* public insert method */
     public void insert(T data) {
-        root = insert_p(root, data);
-        return;
+        size++;
+        /* append the data to the last place */
+        heap[size] = data;
+
+        /* use a private method to reset the position */
+        insert_helper(size);
     }
 
-    /* the private reverse insert method */
-    private HeapNode<T> insert_p(HeapNode<T> root, T data) {
-        int index = size;
-        root = append(root, data, index);
-    }
-
-    /* append the data to the end  */
-    private HeapBST<T> append(HeapBST<T> root, T data, int index) {
-        if (root == null) {
-            return new HeapBST.HeapNode(data);
+    /* private insert helper method */
+    private void insert_helper(int position) {
+        /* if the position is the root, return */
+        if (position == 1) {
+            return;
         }
+
+        if (heap[parent(position)].compareTo(heap[position]) > 0) {
+            swap(position, parent(position));
+            insert_helper(parent(position));
+        }
+    }
+
+    /* return the parent of current position */
+    private int parent(int position) {
+        return position / 2;
+    }
+
+    /* swap the element in the two position */
+    private void swap(int position1, int position2) {
+        T temp = heap[position1];
+        heap[position1] = heap[position2];
+        heap[position2] = temp;
+    }
+
+    /* public pop method */
+    public T pop() {
+        /* if the heap is empty, return null */
+        if (size == 0) {
+            return null;
+        }
+
+        /* pop out the result
+         * then swap the value and change the size
+         */
+        T result = heap[1];
+        swap(1, size);
+        heap[size] = null;
+        size--;
+
+        /* use a private pop helper to reset the array */
+        pop_helper(1);
+        return result;
+    }
+
+    /* private pop helper method */
+    private void pop_helper(int position) {
+        /* if the position is the leaf, return */
+        if (position * 2 > size) {
+            return;
+        }
+
+        /* find the smaller child */
+        int child = smallerChild(position);
+        if (heap[position].compareTo(heap[child]) > 0) {
+            swap(position, child);
+            pop_helper(child);
+        }
+    }
+
+    /* return the smaller child */
+    private int smallerChild(int position) {
+        if (position * 2 + 1 > size) {
+            return position * 2;
+        } else {
+            if (heap[position * 2].compareTo(heap[position * 2 + 1]) < 0) {
+                return position * 2;
+            } else {
+                return position * 2 + 1;
+            }
+        }
+    }
+
+    /* print the heap */
+    public void print() {
+        for (int i = 1; i <= size; i++) {
+            System.out.print(heap[i] + " ");
+        }
+        System.out.println();
     }
 }
