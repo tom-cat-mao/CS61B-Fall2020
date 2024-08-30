@@ -76,48 +76,13 @@ public class Graph<V> {
     }
 
     /* BFS search for a value */
-    public int BFS(V start, V target) {
+    public boolean BFS(V start, V target) {
         List<V> visited = new ArrayList<>();
         return BFS_helper(start, target, visited);
     }
 
-    /* BFS private helper method */
-    private int BFS_helper(V start, V target, List<V> visited) {
-        int distance = -1;
-        Queue<V> queue = new LinkedList<>();
-
-        /* add the start vertex to visited list */
-        visited.add(start);
-
-        if (start.equals(target)) {
-            return 0;
-        }
-
-        /* add the neighbors of the start vertex to the queue */
-        for (V vertex : adjList.get(start)) {
-            if (!visited.contains(vertex)) {
-                queue.add(vertex);
-            }
-        }
-
-        if (queue.isEmpty()) {
-            return distance;
-        }
-
-        /* while the queue is not empty */
-        while (!queue.isEmpty()) {
-            /* get the first vertex in the queue */
-            V vertex = queue.poll();
-
-                if (!visited.contains(vertex)) {
-                    distance = BFS_helper(vertex, target, visited);
-                    if (distance >= 0) {
-                        return distance + 1;
-                    }
-            }
-        }
-
-        return distance;
+    /* private BFS helper method */
+    private boolean BFS_helper(V start, V target, List<V> visited) {
 
     }
 

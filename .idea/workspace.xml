@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d35fd76-5463-4fdd-9843-b0cedfa57d01" name="Changes" comment="a temp version of lab8 hashmap,&#10;don't know why the set test only convert 242 elements instead of all the elements">
-      <change afterPath="$PROJECT_DIR$/lecture_exercise/section-9/Lecture-23/BFS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lecture_exercise/section-9/Lecture-23/BFSTest.java" afterDir="false" />
+    <list default="true" id="2d35fd76-5463-4fdd-9843-b0cedfa57d01" name="Changes" comment="the graph database , the DFS and a failed BFS(don't know how to complete sad)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture_exercise/project/proj1golden/bin/main/com/example/ArrayDequeSolution.class" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/project/proj1golden/bin/main/com/example/ArrayDequeSolution.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture_exercise/project/proj1golden/bin/main/com/example/StudentArrayDeque.class" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/project/proj1golden/bin/main/com/example/StudentArrayDeque.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture_exercise/project/proj1golden/bin/main/com/example/StudentArrayDequeLauncher.class" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/project/proj1golden/bin/main/com/example/StudentArrayDequeLauncher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture_exercise/project/proj1golden/bin/test/com/example/AssertEqualsStringDemo.class" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/project/proj1golden/bin/test/com/example/AssertEqualsStringDemo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture_exercise/section-9/Lecture-23/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_exercise/section-9/Lecture-23/Graph.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724694401423</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="the graph database , the DFS and a failed BFS(don't know how to complete sad)">
+      <option name="closed" value="true" />
+      <created>1724989731546</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724989731546</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,6 +122,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="lecture 21 heap simulation uncomplete" />
     <MESSAGE value="a temp version of lab8 hashmap,&#10;don't know why the set test only convert 242 elements instead of all the elements" />
-    <option name="LAST_COMMIT_MESSAGE" value="a temp version of lab8 hashmap,&#10;don't know why the set test only convert 242 elements instead of all the elements" />
+    <MESSAGE value="the graph database , the DFS and a failed BFS(don't know how to complete sad)" />
+    <option name="LAST_COMMIT_MESSAGE" value="the graph database , the DFS and a failed BFS(don't know how to complete sad)" />
   </component>
 </project>
