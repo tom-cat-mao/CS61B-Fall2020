@@ -83,7 +83,31 @@ public class Graph<V> {
 
     /* private BFS helper method */
     private boolean BFS_helper(V start, V target, List<V> visited) {
+        /* build a queue to store the nodes */
+        Queue<V> queue = new LinkedList<V>();
 
+        /* add the start vertex to the queue */
+        queue.add(start);
+
+        /* while the queue is not empty */
+        while (!queue.isEmpty()) {
+            V vertex = queue.poll();
+
+            /* if the vertex is the target vertex, return true */
+            if (vertex.equals(target)) {
+                return true;
+            }
+
+            for (V neighbor : adjList.get(vertex)) {
+                /* if the neighbor is not visited, add it to the queue */
+                if (!visited.contains(neighbor)) {
+                    queue.add(neighbor);
+                    visited.add(neighbor);
+                }
+            }
+        }
+
+        return false;
     }
 
     // Get the neighbors of a node
@@ -95,7 +119,4 @@ public class Graph<V> {
     public Set<V> getNodes() {
         return adjList.keySet();
     }
-
-
-
 }

@@ -104,4 +104,41 @@ public class GraphTest {
         // Test when the start vertex is the same as the target vertex
         assertEquals(0, graph.BFS("A", "A"));
     }
+
+   @Test
+    public void testBFSComplexGraph() {
+        // Create a more complex graph
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
+        graph.addVertex("E");
+        graph.addVertex("F");
+        graph.addVertex("G");
+        graph.addVertex("H");
+        graph.addVertex("I");
+        graph.addVertex("J");
+
+        graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        graph.addEdge("B", "D");
+        graph.addEdge("B", "E");
+        graph.addEdge("C", "F");
+        graph.addEdge("C", "G");
+        graph.addEdge("D", "H");
+        graph.addEdge("E", "I");
+        graph.addEdge("F", "J");
+
+        // Test when the target vertex is reachable with multiple paths
+        assertEquals(true, graph.BFS("A", "H")); // A -> B -> D -> H
+
+        // Test when the target vertex is not reachable
+        assertEquals(false, graph.BFS("A", "Z")); // Z does not exist in the graph
+
+        // Test when the start vertex is the same as the target vertex
+        assertEquals(true, graph.BFS("A", "A"));
+
+        // Test when the target vertex is reachable with a longer path
+        assertEquals(true, graph.BFS("A", "J")); // A -> C -> F -> J
+    }
 }
