@@ -11,6 +11,10 @@ public class STPTest {
     @Before
     public void setUp() {
         graph = new Graph<>();
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
         graph.addEdge("A", "B", 1);
         graph.addEdge("A", "C", 4);
         graph.addEdge("B", "C", 2);
@@ -18,6 +22,7 @@ public class STPTest {
         graph.addEdge("C", "D", 1);
 
         stp = new STP<>(graph, "A", "D");
+        return;
     }
 
     @Test

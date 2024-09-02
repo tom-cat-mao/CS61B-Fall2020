@@ -17,6 +17,7 @@ public class STP<T> {
         public Heap(int size) {
             heap = new HashMap[size + 1];
             this.size = 0;
+            findIndex = new HashMap<>();
         }
 
         /* insert method */
@@ -70,13 +71,12 @@ public class STP<T> {
                 return null;
             }
 
-            findIndex.remove(heap[1].keySet().iterator().next());
             Map<T, Integer> top = new HashMap<>(heap[1]);
             swap(1, size);
             heap[size] = null;
             size--;
 
-            pop_helper(0);
+            pop_helper(1);
             return top;
         }
 
@@ -171,7 +171,7 @@ public class STP<T> {
 
     public STP(Graph<T> graph, T start, T target) {
         heap = new Heap<>(graph.getNumVertices() + 1); // the heap of the vertices
-        factor = new Integer[graph.getNumVertices() + 1]; // the factor of the vertices
+//        factor = new Integer[graph.getNumVertices() + 1]; // the factor of the vertices
 
         /* fill the factor with random number from 1 to 100 */
         // Random random = new Random();
