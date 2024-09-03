@@ -15,13 +15,26 @@ public class STPTest {
         graph.addVertex("B");
         graph.addVertex("C");
         graph.addVertex("D");
-        graph.addEdge("A", "B", 1);
-        graph.addEdge("A", "C", 4);
-        graph.addEdge("B", "C", 2);
-        graph.addEdge("B", "D", 5);
+        graph.addVertex("E");
+        graph.addVertex("F");
+        graph.addVertex("G");
+        graph.addVertex("H");
+        graph.addEdge("A", "B", 7);
+        graph.addEdge("A", "C", 9);
+        graph.addEdge("A", "D", 14);
+        graph.addEdge("B", "C", 1);
         graph.addEdge("C", "D", 1);
+        graph.addEdge("B", "E", 6);
+        graph.addEdge("B", "F", 7);
+        graph.addEdge("C", "F", 10);
+        graph.addEdge("D", "F", 2);
+        graph.addEdge("E", "F", 11);
+        graph.addEdge("F", "G", 6);
+        graph.addEdge("G", "H", 1);
+        graph.addEdge("D", "G", 15);
+        graph.addEdge("D", "H", 9);
 
-        stp = new STP<>(graph, "A", "D");
+        stp = new STP<>(graph, "A", "G");
         return;
     }
 

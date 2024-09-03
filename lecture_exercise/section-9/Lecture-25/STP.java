@@ -171,6 +171,7 @@ public class STP<T> {
 
     public STP(Graph<T> graph, T start, T target) {
         heap = new Heap<>(graph.getNumVertices() + 1); // the heap of the vertices
+        path = new HashMap<>(); // the path of the vertices
 //        factor = new Integer[graph.getNumVertices() + 1]; // the factor of the vertices
 
         /* fill the factor with random number from 1 to 100 */
@@ -188,6 +189,12 @@ public class STP<T> {
         Set<T> flutter = graph.getNodes();
         Map<T, Integer> distance = new HashMap<>();
 
+        /* initialize the path */
+        for (T i : flutter) {
+            distance.put(i, Integer.MAX_VALUE);
+        }
+        distance.put(start, 0);
+
         /* put all the nodes into the flutter
          * and initialize the start node priority
          */
@@ -201,6 +208,9 @@ public class STP<T> {
 
         while (!flutter.isEmpty()) {
             Map<T, Integer> current = heap.pop();
+            if (current == null) {
+                break;
+            }
             T key = current.keySet().iterator().next();
             relax(graph, key, distance);
         }
