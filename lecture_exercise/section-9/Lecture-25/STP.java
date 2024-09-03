@@ -73,6 +73,7 @@ public class STP<T> {
 
             Map<T, Integer> top = new HashMap<>(heap[1]);
             swap(1, size);
+            findIndex.remove(heap[size].keySet().iterator().next());
             heap[size] = null;
             size--;
 
@@ -172,7 +173,7 @@ public class STP<T> {
     public STP(Graph<T> graph, T start, T target) {
         heap = new Heap<>(graph.getNumVertices() + 1); // the heap of the vertices
         path = new HashMap<>(); // the path of the vertices
-//        factor = new Integer[graph.getNumVertices() + 1]; // the factor of the vertices
+        //        factor = new Integer[graph.getNumVertices() + 1]; // the factor of the vertices
 
         /* fill the factor with random number from 1 to 100 */
         // Random random = new Random();
