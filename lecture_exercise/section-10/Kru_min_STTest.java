@@ -1,9 +1,7 @@
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import java.io.ByteArrayOutputStream;
 import java.util.*;
 
 public class Kru_min_STTest {
@@ -15,13 +13,13 @@ public class Kru_min_STTest {
     public void setUp() {
         kruMinST = new Kru_min_ST<>();
         graph = new Graph<>();
-        
+
         // Add nodes and edges to the graph
         graph.addVertex(1);
         graph.addVertex(2);
         graph.addVertex(3);
         graph.addVertex(4);
-        
+
         graph.addEdge(1, 2, 10);
         graph.addEdge(2, 3, 5);
         graph.addEdge(3, 4, 15);
@@ -79,19 +77,18 @@ public class Kru_min_STTest {
         assertEquals(15, (int) minST.get(3).get(4));
     }
 
-    @Ignore
     @Test
     public void testPrintST() {
         kruMinST.find_min_ST(graph);
 
         // Capture the output of print_ST
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent));
 
         kruMinST.print_ST();
 
         String expectedOutput = "1 -> 2 : 10\n2 -> 3 : 5\n3 -> 4 : 15\n";
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, outContent.toString().trim());
 
         // Reset the standard output
         System.setOut(System.out);

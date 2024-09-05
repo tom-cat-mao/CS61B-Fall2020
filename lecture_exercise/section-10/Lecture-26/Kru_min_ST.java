@@ -3,14 +3,14 @@ import javax.swing.table.TableColumn;
 
 public class Kru_min_ST<T> {
 
-    public Set<Edge<T>> edges; // store the edges in order
-    public WQU<T> wqu; // store the vertices and the parent
-    public Map<T, Map<T, Integer>> min_ST; // store the shortest tree
+    private Set<Edge<T>> edges; // store the edges in order
+    private WQU<T> wqu; // store the vertices and the parent
+    private Map<T, Map<T, Integer>> min_ST; // store the shortest tree
 
     /* store the vertices and the edge */
-    public class Edge<T> {
-        T[] vertices;
-        int weight;
+    private class Edge<T> {
+        private T[] vertices;
+        private int weight;
 
         public Edge(T a, T b, int weight) {
             vertices = (T[]) new Object[2];

@@ -13,6 +13,29 @@ public class PQ<T> {
         findIndex = new HashMap<>();
     }
 
+    /* constructor that can insert all the nodes from the graph */
+    public PQ(Graph graph) {
+        findIndex = new HashMap<>();
+        size = 0;
+        heap = new HashMap[graph.getNumVertices() + 1];
+        Set<T> vertices = graph.getNodes();
+
+        for (T v : vertices) {
+            insert(v, Integer.MAX_VALUE);
+        }
+
+        heap[1].put(vertices.iterator().next(), 0);
+        findIndex.put(vertices.iterator().next(), 1);
+    }
+
+    /* get the start vertex
+     *  use only in Prime algorithm
+     * in order to find the start point
+     */
+//    public T getStart() {
+//        return heap[1].keySet().iterator().next();
+//    }
+
     /* insert method */
     public void insert(T vertex, int weight) {
         size++;
@@ -81,7 +104,7 @@ public class PQ<T> {
             return;
         }
 
-        /* recussion to find the smaller child */
+        /* recursion to find the smaller child */
         int child = smallerchild(index);
         if (
             heap[index].values()
@@ -116,10 +139,20 @@ public class PQ<T> {
         }
     }
 
+    /* whether the PQ contain the key */
+    public boolean containkey(T vertice) {
+        return findIndex.containsKey(vertice);
+    }
+
+    /* find the weight of a specific vertix */
+    public int getWeight(T vertice) {
+        return heap[find(vertice)].values().iterator().next();
+    }
+
     /* find the specific vertice
      * use the find hashmap, faster
      */
-    public int find(T vertice) {
+    private int find(T vertice) {
         return findIndex.get(vertice);
     }
 
@@ -158,5 +191,10 @@ public class PQ<T> {
     /* bubble down the node */
     public void bubbleDown(int index) {
         pop_helper(index);
+    }
+
+    /* check the size of the heap */
+    public int size() {
+        return size;
     }
 }

@@ -7,7 +7,7 @@ public class WQU<T> {
 
     /* store the value and its parent */
     private Map<T, T> parent;
-    public Map<T, Integer> weight;
+    private Map<T, Integer> weight;
     private int connected_vertices;
 
     /* the constructor that add all the vertix into the Map */
