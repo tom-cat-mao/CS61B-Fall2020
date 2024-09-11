@@ -4,7 +4,6 @@
  * time per operation in microseconds.
  */
 import bearmaps.Point;
-import edu.princeton.cs.algs4.Stopwatch;
 
 import java.util.ArrayList;
 import java.util.List;
