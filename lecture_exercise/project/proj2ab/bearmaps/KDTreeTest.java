@@ -1,10 +1,13 @@
-package bearmaps;
-
+/* test for KDTree methods */
 import java.util.*;
+import bearmaps.Point;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class KDTreeTest {
+
+    private List<Point> points;
 
     @Before
     public void setUp() {
@@ -15,7 +18,7 @@ public class KDTreeTest {
         Point p5 = new Point(1, 5);
         Point p6 = new Point(4, 4);
 
-        List<Point> points = List.of(p1, p2, p3, p4, p5, p6);
+        points = List.of(p1, p2, p3, p4, p5, p6);
     }
 
     @Test
@@ -29,9 +32,9 @@ public class KDTreeTest {
     @Test
     public void testinsert() {
         KDTree kd = new KDTree(points);
-        Point actual = kd.find(new Point(4, 5));
-        Point expected = new Point(4, 5);
-        assertEquals(expected, actual);
+        boolean b= kd.find(new Point(4, 5));
+//        Point expected = new Point(4, 5);
+        assertEquals(true, b);
     }
 
 }
