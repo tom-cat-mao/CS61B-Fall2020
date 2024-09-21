@@ -1,6 +1,6 @@
 package main.java.AStar;
 
-import java.util.List;
+import java.util.*;
 import main.java.AStar.*;
 
 public interface AStarGraph<Vertex> {
@@ -11,4 +11,6 @@ public interface AStarGraph<Vertex> {
      *  the start position. For results to be correct, this estimate must 
      *  be less than or equal to the correct distance. */
     double estimatedDistanceToGoal(Vertex s, Vertex goal);
+
+    Set<Vertex> getNodes();
 }

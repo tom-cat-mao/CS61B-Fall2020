@@ -1,12 +1,16 @@
 package main.java.AStar;
 
-import main.java.AStar.Vertex;
-
 public class WeightedEdge<Vertex> {
 
     private Vertex from;
     private Vertex to;
     private double weight;
+
+    public WeightedEdge(Vertex from, Vertex to, double weight) {
+        this.from = from;
+        this.to = to;
+        this.weight = weight;
+    }
 
     /** The source of this edge. */
     public Vertex from() {

@@ -171,9 +171,9 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
     }
 
     /* find the weight of a specific vertix */
-//    public double getWeight(T vertice) {
-//        return heap[find(vertice)].values().iterator().next();
-//    }
+    public double getWeight(T vertice) {
+        return heap[find(vertice)].values().iterator().next();
+    }
 
     /* find the specific vertice
      * use the find hashmap, faster
