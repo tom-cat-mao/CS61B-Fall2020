@@ -6,20 +6,34 @@
   <component name="ChangeListManager">
     <list default="true" id="3881bea2-1858-4ba3-8256-58bdfad9db1a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/.idea/libraries/javalib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/bearmaps.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/ArrayHeapMinPQ/ArrayHeapMinPQ.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/bearmaps/main/java/ArrayHeapMinPQ/ArrayHeapMinPQ.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/AStar/AStarGraph.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/AStar/AStarSolver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/AStar/ShortestPathsSolver$SolverOutcome.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/AStar/ShortestPathsSolver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/AStar/WeightedEdge.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/ArrayHeapMinPQ/ArrayHeapMinPQ.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/ExtrinsicMinPQ/ExtrinsicMinPQ.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/Graph/Graph$Edges.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/Graph/Graph.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/KDTree/KDTree$KDNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/KDTree/KDTree$KDNodeComparator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/KDTree/KDTree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/NaiveMinPQ/NaiveMinPQ$PriorityNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/NaiveMinPQ/NaiveMinPQ.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/NaivePointSet/NaivePointSet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/Point/Point.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/PointSet/PointSet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/main/java/Stopwatch/Stopwatch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/test/java/AStarTest/AStarSolverTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/test/java/ArrayHeapMinPQTest/ArrayHeapMinPQTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/test/java/KDTreeTest/KDTreeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/test/java/KDTreeTiming/KDTreeNearestTiming.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/test/java/KDTreeTiming/KDTreeTiming.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/test/java/NearestComparisonTest/NearestMethodComparisonTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/bearmaps/test/java/NearestComparisonTest/NearestMethodTimingComparisonTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/AStar/AStarGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AStar/AStarGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AStar/AStarSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AStar/AStarSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AStar/Vertex.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AStar/WeightedEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AStar/WeightedEdge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArrayHeapMinPQ/ArrayHeapMinPQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArrayHeapMinPQ/ArrayHeapMinPQ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AStar/AStarSolverTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Graph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Graph/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/AStarTest/AStarSolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AStarTest/AStarSolverTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +67,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.AStarSolverTest.executor": "Run",
-    "JUnit.AStarSolverTest.testAStarSolver.executor": "Debug",
+    "JUnit.AStarSolverTest.testAStarSolver.executor": "Run",
+    "JUnit.AStarSolverTest.testRelax.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
@@ -64,7 +79,22 @@
     "settings.editor.selected.configurable": "settings.sync"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.AStarSolverTest.testRelax">
+    <configuration name="AStarSolverTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bearmaps" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.AStarTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java.AStarTest" />
+      <option name="MAIN_CLASS_NAME" value="test.java.AStarTest.AStarSolverTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AStarSolverTest.testAStarSolver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bearmaps" />
       <extension name="coverage">
@@ -81,8 +111,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AStarSolverTest.testRelax" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bearmaps" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.AStarTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java.AStarTest" />
+      <option name="MAIN_CLASS_NAME" value="test.java.AStarTest.AStarSolverTest" />
+      <option name="METHOD_NAME" value="testRelax" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AStarSolverTest.testRelax" />
+        <item itemvalue="JUnit.AStarSolverTest" />
         <item itemvalue="JUnit.AStarSolverTest.testAStarSolver" />
       </list>
     </recent_temporary>
@@ -97,5 +145,16 @@
       <updated>1726883701397</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/AStarTest/AStarSolverTest.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

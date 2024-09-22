@@ -70,6 +70,7 @@ public class Graph<V> implements AStarGraph<V> {
     }
 
     /* add a vertex */
+    @Override
     public void addVertex(V vertex) {
         adjList.putIfAbsent(vertex, new Edges());
         level0.add(vertex);
@@ -77,6 +78,7 @@ public class Graph<V> implements AStarGraph<V> {
     }
 
     /* add an edge */
+    @Override
     public void addEdge(V source, V destination, int weight) {
         adjList.get(source).addEdge(destination, weight);
         adjList.get(destination).increaselevel();
@@ -84,6 +86,7 @@ public class Graph<V> implements AStarGraph<V> {
     }
 
     /* remove a vertex */
+    @Override
     public void removeVertex(V vertex) {
         // adjList.values().forEach(e -> e.remove(vertex));
         /* get the edges, get the destinations of the edge then decrease the level of each vertix */
@@ -100,6 +103,7 @@ public class Graph<V> implements AStarGraph<V> {
     }
 
     /* get the number of vertices */
+    @Override
     public int getNumVertices() {
         return numVertices;
     }
@@ -200,11 +204,13 @@ public class Graph<V> implements AStarGraph<V> {
     }
 
     // Get all nodes in the graph
+    @Override
     public Set<V> getNodes() {
         return adjList.keySet();
     }
 
     /* Get the distance to the target */
+    @Override
     public int getWeight(V source, V destination) {
         return adjList.get(source).getWeight(destination);
     }
