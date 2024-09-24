@@ -11,6 +11,7 @@ public class IDAStarSolver<Vertex> {
     private double solutionWeight; // the total weight of the solution path
     private List<Vertex> solution; // the solution
     private int numStates;
+    private Vertex goal;
     private final double bound;
 
     public IDAStarSolver(
@@ -19,6 +20,7 @@ public class IDAStarSolver<Vertex> {
         Vertex end,
         double timeout
     ) {
+        goal = end;
         Stopwatch sw = new Stopwatch();
         bound = input.estimatedDistanceToGoal(start, end);
         Map<Vertex, Vertex> path = new HashMap<>();
@@ -36,8 +38,11 @@ public class IDAStarSolver<Vertex> {
         WeightedEdge<Vertex> e,
         Map<Vertex, Vertex> path,
         ExtrinsicMinPQ<Vertex> pq,
-        Vertex goal,
         Stack<Vertex> visited,
         Map<Vertex, Double> disTo
     ) {}
+
+    private boolean isgoal(Vertex v) {
+        return v.equals(goal);
+    }
 }

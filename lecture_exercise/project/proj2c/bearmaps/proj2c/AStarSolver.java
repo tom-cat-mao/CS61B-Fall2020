@@ -1,3 +1,4 @@
+/* this is a AStarSolver for the STP in a graph */
 package bearmaps.proj2c;
 
 import edu.princeton.cs.algs4.Stopwatch;
@@ -9,7 +10,7 @@ public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex> {
     private SolverOutcome outcome; // the outcome of the solution use enum to specifiy
     private double solutionWeight; // the total weight of the solution path
     private List<Vertex> solution; // the solution
-    private int numStates;
+    private int numStates; // the number of the operations
 
     public AStarSolver(
         AStarGraph<Vertex> input,
@@ -18,7 +19,7 @@ public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex> {
         double timeout
     ) {
         solution = new ArrayList<>();
-        ExtrinsicMinPQ<Vertex> pq = new ArrayHeapMinPQ<>(); // the priority query to store the current compatitors
+        ExtrinsicMinPQ<Vertex> pq = new ArrayHeapMinPQ<>(); //   the priority query to store the current compatitors
         Map<Vertex, Double> disTo = new HashMap<>();
         List<Vertex> visited = new ArrayList<>(); // the visited vertices
         Map<Vertex, Vertex> path = new HashMap<>(); // the whole path
@@ -51,7 +52,10 @@ public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex> {
             for (WeightedEdge<Vertex> neighbor : input.neighbors(current)) {
                 if (!visited.contains(neighbor.to())) {
                     relax(input, neighbor, disTo, pq, path, end);
-                    timeSpent += sw.elapsedTime() / 1000;
+                    timeSpent += sw.elapsedTime() / 1000; // add the timespent
+                    /* if the time spent is greater than the timeout,
+                     * outcome is timeout
+                     */
                     if (timeSpent > timeout) {
                         outcome = SolverOutcome.TIMEOUT;
                         return;
@@ -60,7 +64,7 @@ public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex> {
             }
         }
 
-        outcome = SolverOutcome.UNSOLVABLE;
+        outcome = SolverOutcome.UNSOLVABLE; // if no solution, outcome is unsolvable
     }
 
     private void relax(
@@ -75,14 +79,27 @@ public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex> {
         Vertex q = e.to(); // the vertex that the edge point to
         double w = e.weight(); // the weight or priority of the edge
 
+        /* if the vertex is not in the disTo map
+         * put it in the map
+         * and give it the max double value
+         */
         if (!disTo.containsKey(q)) {
             disTo.put(q, Double.MAX_VALUE);
         }
 
+        /* if current distance to q is bigger than the relax path
+         * calculate the distance
+         * reset to the smaller one
+         * and put it into the path
+         */
         if (disTo.get(p) + w < disTo.get(q)) {
             disTo.put(q, disTo.get(p) + w);
             path.put(q, p);
 
+            /* if the priority queue has the element q
+             * then change the priority
+             * else add the current distance plus the estimatedDistancetoFoal
+             */
             if (pq.contains(q)) {
                 pq.changePriority(
                     q,
