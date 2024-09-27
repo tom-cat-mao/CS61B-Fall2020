@@ -4,7 +4,7 @@ package bearmaps.proj2c;
 import edu.princeton.cs.algs4.Stopwatch;
 import java.util.*;
 
-public class IDAStarSolver<Vertex> {
+public class IDAStarSolver<Vertex> implements ShortestPathsSolver<Vertex> {
 
     private double timeSpent; // the whole time spent
     private SolverOutcome outcome; // the outcome of the solution use enum to specifiy
@@ -13,6 +13,7 @@ public class IDAStarSolver<Vertex> {
     private int numStates;
     private Vertex goal; // the goal vertex
     private double bound; // the initial bound for the search
+    private Stopwatch sw;
 
     public IDAStarSolver(
         AStarGraph<Vertex> input,
@@ -20,15 +21,18 @@ public class IDAStarSolver<Vertex> {
         Vertex end,
         double timeout
     ) {
+        numStates = 0; // set the number of states explored as 0
         bound = input.estimatedDistanceToGoal(start, end); // set the the initial bound for the search
         goal = end; // set the goal
-        Stopwatch sw = new Stopwatch(); // start the timer
+        sw = new Stopwatch(); // start the timer
         Stack<Vertex> path = new Stack<>(); // the path to the current node worked like a stack
-        List<Vertex> visited = new ArrayList<>(); // store the visited nodes
         Map<Vertex, Double> disTo = new HashMap<>(); // store the distance to the current node
+        List<Vertex> visited; // store the visited nodes
         double t; // store the current distance to the goal
+        outcome = SolverOutcome.UNSOLVABLE; // set the outcome as unsolvable
 
         disTo.put(start, 0.0); // set the distance to the start node as 0
+        path.push(start); // add the start node to the path
 
         /* search the whole graph with the initial bound
          * if the search time is greater than the timeout, return
@@ -36,11 +40,15 @@ public class IDAStarSolver<Vertex> {
          * else reset the bound and continue the search
          */
         while (true) {
+            visited = new ArrayList<>(); // reset the visited list
             /* set t as the whole path weight of the current node */
             t = search(input, start, path, visited, disTo);
 
             /* if find the goal, return */
             if (outcome == SolverOutcome.SOLVED) {
+                timeSpent = sw.elapsedTime(); // get the whole time spent
+                solutionWeight = disTo.get(goal); // get the solution weight
+                solution = new ArrayList<>(path); // get the solution path
                 return;
             }
 
@@ -51,12 +59,13 @@ public class IDAStarSolver<Vertex> {
             }
 
             /* if the search time is greater than the timeout, return */
-            if (sw.elapsedTime() > timeout) {
-                outcome = SolverOutcome.TIMEOUT;
-            }
+//            if (sw.elapsedTime() > timeout) {
+//                outcome = SolverOutcome.TIMEOUT;
+//            }
 
             bound = t; // reset the bound for the next search
         }
+
     }
 
     private double search(
@@ -116,6 +125,8 @@ public class IDAStarSolver<Vertex> {
                 disTo.put(next, neighbor.weight() + disTo.get(node));
             }
 
+            numStates++; // increment the number of states explored
+
             /* search the next node with the current bound */
             double t = search(input, next, path, visited, disTo);
 
@@ -125,9 +136,9 @@ public class IDAStarSolver<Vertex> {
             }
 
             /* if it run out of the time , return */
-            if (outcome == SolverOutcome.TIMEOUT) {
-                return t;
-            }
+//            if (outcome == SolverOutcome.TIMEOUT) {
+//                return t;
+//            }
 
             /* update the minimum distance to the goal */
             min = Math.min(min, t);
@@ -143,4 +154,30 @@ public class IDAStarSolver<Vertex> {
     private boolean isgoal(Vertex v) {
         return v.equals(goal);
     }
+
+    @Override
+    public SolverOutcome outcome() {
+        return outcome;
+    }
+
+    @Override
+    public List<Vertex> solution() {
+        return solution;
+    }
+
+    @Override
+    public double solutionWeight() {
+        return solutionWeight;
+    }
+
+    @Override
+    public int numStatesExplored() {
+        return numStates;
+    }
+
+    @Override
+    public double explorationTime() {
+        return timeSpent;
+    }
+
 }
