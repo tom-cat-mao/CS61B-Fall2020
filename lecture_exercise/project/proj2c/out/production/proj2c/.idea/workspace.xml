@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a15ef2af-913a-4329-898e-321725846afe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/bearmaps/proj2c/IDAStarSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/proj2c/IDAStarSolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bearmaps/proj2c/slidingpuzzle/DemoSlidingPuzzleSolution.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/proj2c/slidingpuzzle/DemoSlidingPuzzleSolution.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tom-cat-mao&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tom-cat-mao/CS61B-Fall2020.git&quot;,
+    &quot;accountId&quot;: &quot;10fa8eb2-c9e4-47ed-b7c9-f38007a8d5d2&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2mSbaWgvOwuntfmpAi6zLpaDkrf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DemoIntegerHopPuzzleSolution.executor": "Run",
+    "Application.DemoRunSeveralPuzzles.executor": "Run",
+    "Application.DemoSlidingPuzzleSolution.executor": "Debug",
+    "Application.DemoWordPuzzleSolution.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/tomcat/CS61B-Fall2020/lecture_exercise/project/proj2c/bearmaps/proj2c/input",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.DemoSlidingPuzzleSolution">
+    <configuration name="DemoIntegerHopPuzzleSolution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bearmaps.proj2c.integerhoppuzzle.DemoIntegerHopPuzzleSolution" />
+      <module name="proj2c" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bearmaps.proj2c.integerhoppuzzle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DemoRunSeveralPuzzles" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bearmaps.proj2c.slidingpuzzle.DemoRunSeveralPuzzles" />
+      <module name="proj2c" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bearmaps/proj2c/input" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bearmaps.proj2c.slidingpuzzle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DemoSlidingPuzzleSolution" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bearmaps.proj2c.slidingpuzzle.DemoSlidingPuzzleSolution" />
+      <module name="proj2c" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bearmaps/proj2c/input" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bearmaps.proj2c.slidingpuzzle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DemoWordPuzzleSolution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bearmaps.proj2c.wordladderpuzzle.DemoWordPuzzleSolution" />
+      <module name="proj2c" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bearmaps/proj2c/input" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bearmaps.proj2c.wordladderpuzzle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.DemoRunSeveralPuzzles" />
+      <item itemvalue="Application.DemoSlidingPuzzleSolution" />
+      <item itemvalue="Application.DemoIntegerHopPuzzleSolution" />
+      <item itemvalue="Application.DemoWordPuzzleSolution" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DemoWordPuzzleSolution" />
+        <item itemvalue="Application.DemoIntegerHopPuzzleSolution" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a15ef2af-913a-4329-898e-321725846afe" name="Changes" comment="" />
+      <created>1727072988814</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727072988814</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/bearmaps/proj2c/integerhoppuzzle/DemoIntegerHopPuzzleSolution.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/bearmaps/proj2c/slidingpuzzle/DemoSlidingPuzzleSolution.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
