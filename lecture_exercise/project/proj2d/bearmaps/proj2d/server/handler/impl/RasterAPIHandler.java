@@ -103,12 +103,57 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
         if (zoomedOut(requestParams)) {
             return fullQuery();
         }
-        if (goesToEdge(requestParams)) {
-            return partialQuery(requestParams);
-        }
 
         // normal case
         return getValueResult(requestParams);
+    }
+
+    /**
+     * find the xstart and ystart with the ullon and ullat
+     * @param requestParams, depth
+     * @return xStart, yStart in a array
+     */
+    private int[] XYStart(final Map<String, Double> requestParams, final int depth) {
+        int xStart = Math.max((int) Math.floor((requestParams.get("ullon") - Constants.ROOT_ULLON) / (Constants.ROOT_LRLON - Constants.ROOT_ULLON) * Math.pow(2, depth)), 0);
+        int yStart = Math.max((int) Math.floor((Constants.ROOT_ULLAT - requestParams.get("ullat")) / (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) * Math.pow(2, depth)), 0);
+
+        return new int[]{xStart, yStart};
+    }
+
+    /**
+     * transform the XYStart to raster_ul_lon and raster_ul_lat
+     * @param XYStart, depth
+     * @return raster_ul_lon, raster_ul_lat in a array
+     */
+    private double[] rasterUL(final int[] XYStart, final int depth) {
+        double raster_ul_lon = Constants.ROOT_ULLON + XYStart[0] * (Constants.ROOT_LRLON - Constants.ROOT_ULLON) / Math.pow(2, depth);
+        double raster_ul_lat = Constants.ROOT_ULLAT - XYStart[1] * (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) / Math.pow(2, depth);
+
+        return new double[]{raster_ul_lon, raster_ul_lat};
+    }
+
+    /**
+     * transform the XYEnd to raster_lr_lon and raster_lr_lat
+     * @param XYEnd, depth
+     * @return raster_lr_lon, raster_lr_lat in a array
+     */
+    private double[] rasterLR(final int[] XYEnd, final int depth) {
+        double raster_lr_lon = Constants.ROOT_ULLON + (XYEnd[0] + 1) * (Constants.ROOT_LRLON - Constants.ROOT_ULLON) / Math.pow(2, depth);
+        double raster_lr_lat = Constants.ROOT_ULLAT - (XYEnd[1] + 1) * (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) / Math.pow(2, depth);
+
+        return new double[]{raster_lr_lon, raster_lr_lat};
+    }
+
+    /**
+     * find the xend and yend with the lrlon and lrlat
+     * @param requestParams, depth
+     * return xEnd, yEnd in a array
+     */
+    private int[] XYEnd(final Map<String, Double> requestParams, final int depth) {
+        int xEnd = Math.min((int) Math.floor((requestParams.get("lrlon") - Constants.ROOT_ULLON) / (Constants.ROOT_LRLON - Constants.ROOT_ULLON) * Math.pow(2, depth)), (int) Math.pow(2, depth) - 1);
+        int yEnd = Math.min((int) Math.floor((Constants.ROOT_ULLAT - requestParams.get("lrlat")) / (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) * Math.pow(2, depth)), (int) Math.pow(2, depth) - 1);
+
+        return new int[]{xEnd, yEnd};
     }
 
     /**
@@ -116,30 +161,37 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
      * @param requestParams
      * @return result
      */
-    private Map<String, Object> getValueResult(Map<String, Double> requestParams) {
+    private Map<String, Object> getValueResult(final Map<String, Double> requestParams) {
         Map<String, Object> results = new HashMap<>();
-        results.put("depth", findDepth(requestParams));
+        final int depth = findDepth(requestParams);
+        final int[] XYStart = XYStart(requestParams, depth);
+        final int[] XYEnd = XYEnd(requestParams, depth);
+        final double[] rasterUL = rasterUL(XYStart, depth);
+        final double[] rasterLR = rasterLR(XYEnd, depth);
+
+        results.put("depth", depth);
         results.put("query_success", true);
-        results.put("render_grid", findTiles(requestParams, (Integer) results.get("depth"), results));
-        return null;
+        results.put("render_grid", findTiles(depth, XYStart, XYEnd));
+        results.put("raster_ul_lon", rasterUL[0]);
+        results.put("raster_ul_lat", rasterUL[1]);
+        results.put("raster_lr_lon", rasterLR[0]);
+        results.put("raster_lr_lat", rasterLR[1]);
+        return results;
     }
 
     /**
-     * find each tile in the query box
-     * and add the rastered_ul_lon, rastered_ul_lat, rastered_lr_lon, rastered_lr_lat
-     * @param requestParams, depth, results
-     * @return tiles
+     * find the tiles of the query box
+     * with xStart, yStart, xEnd, yEnd
+     * and depth
+     * add the images to the render_grid
+     * @param depth, xstart, ystart, xend, yend
+     * return tiles in a 2D array
      */
-    private String[][] findTiles(Map<String, Double> requestParams, int depth, Map<String, Object> results) {
-        int xStart = (int) Math.floor((requestParams.get("ullon") - Constants.ROOT_ULLON) / (Constants.ROOT_LRLON - Constants.ROOT_ULLON) * Math.pow(2, depth));
-        int xEnd = (int) Math.floor((requestParams.get("lrlon") - Constants.ROOT_ULLON) / (Constants.ROOT_LRLON - Constants.ROOT_ULLON) * Math.pow(2, depth));
-        int yStart = (int) Math.floor((Constants.ROOT_ULLAT - requestParams.get("ullat")) / (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) * Math.pow(2, depth));
-        int yEnd = (int) Math.floor((Constants.ROOT_ULLAT - requestParams.get("lrlat")) / (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) * Math.pow(2, depth));
-
-        results.put("raster_ul_lon", Constants.ROOT_ULLON + xStart * (Constants.ROOT_LRLON - Constants.ROOT_ULLON) / Math.pow(2, depth));
-        results.put("raster_ul_lat", Constants.ROOT_ULLAT - yStart * (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) / Math.pow(2, depth));
-        results.put("raster_lr_lon", Constants.ROOT_ULLON + (xEnd + 1) * (Constants.ROOT_LRLON - Constants.ROOT_ULLON) / Math.pow(2, depth));
-        results.put("raster_lr_lat", Constants.ROOT_ULLAT - (yEnd + 1) * (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) / Math.pow(2, depth));
+    private String[][] findTiles(final int depth, final int[] XYStart, final int[] XYEnd) {
+        int xStart = XYStart[0];
+        int yStart = XYStart[1];
+        int xEnd = XYEnd[0];
+        int yEnd = XYEnd[1];
 
         String[][] tiles = new String[yEnd - yStart + 1][xEnd - xStart + 1];
         for (int i = 0; i < yEnd - yStart + 1; i++) {
@@ -159,7 +211,7 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
      * @param requestParams
      * @return depth
      */
-    private Integer findDepth(Map<String, Double> requestParams) {
+    private Integer findDepth(final Map<String, Double> requestParams) {
         double lonDPP = (requestParams.get("lrlon") - requestParams.get("ullon")) / requestParams.get("w");
         int depth = 0;
         double rootLonDPP = (Constants.ROOT_LRLON - Constants.ROOT_ULLON) / Constants.TILE_SIZE;
@@ -177,7 +229,7 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
      * @param requestParams
      * @return boolean
      */
-    private boolean isValueQuery(Map<String, Double> requestParams) {
+    private boolean isValueQuery(final Map<String, Double> requestParams) {
         return requestParams != null
                 && requestParams.get("ullat") >= requestParams.get("lrlat")
                 && requestParams.get("ullon") <= requestParams.get("lrlon")
@@ -194,7 +246,7 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
      * @param requestParams
      * @return
      */
-    private boolean zoomedOut(Map<String, Double> requestParams) {
+    private boolean zoomedOut(final Map<String, Double> requestParams) {
         return requestParams.get("lrlon") - requestParams.get("ullon") >= Constants.ROOT_LRLON - Constants.ROOT_ULLON
                 && requestParams.get("ullon") <= Constants.ROOT_ULLON
                 && requestParams.get("lrlon") >= Constants.ROOT_LRLON
@@ -217,91 +269,6 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
         results.put("query_success", true);
         return results;
     }
-
-    /**
-     * find out whether the user goes to the edge of the map beyond where data is available
-     * or the query box is so zoomed out that it includes the entire dataset
-     * @param requestParams
-     * @return
-     */
-    private boolean goesToEdge(Map<String, Double> requestParams) {
-        return requestParams.get("ullon") >= Constants.ROOT_LRLON
-                || requestParams.get("lrlon") <= Constants.ROOT_ULLON
-                || requestParams.get("ullat") <= Constants.ROOT_LRLAT
-                || requestParams.get("lrlat") >= Constants.ROOT_ULLAT;
-    }
-
-    /**
-     * partial query
-     * find the depth of the query box
-     * @param requestParams
-     * @return result
-     */
-    private Map<String, Object> partialQuery(Map<String,Double> requestParams) {
-        Map<String, Object> results = new HashMap<>();
-        results.put("depth", findDepth(requestParams));
-        results.put("query_success", true);
-
-        /**
-         * Condition 1:
-         * the left side of the query box is beyond the left side of the map
-         * the right side of the query box is within the map
-         */
-        if (requestParams.get("ullon") < Constants.ROOT_ULLON && requestParams.get("lrlon") <= Constants.ROOT_LRLON) {
-            results.put("render_grid", findTiles(requestParams, (Integer) results.get("depth"), results));
-            results.put("raster_ul_lon", Constants.ROOT_ULLON);
-            results.put("raster_ul_lat", Constants.ROOT_ULLAT);
-            results.put("raster_lr_lon", Constants.ROOT_ULLON + (Constants.ROOT_LRLON - Constants.ROOT_ULLON) / Math.pow(2, (Integer) results.get("depth")));
-            results.put("raster_lr_lat", Constants.ROOT_ULLAT - (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) / Math.pow(2, (Integer) results.get("depth")));
-            return results;
-        }
-
-        /**
-         * Condition 2:
-         * the right side of the query box is beyond the right side of the map
-         * the left side of the query box is within the map
-         */
-        if (requestParams.get("ullon") >= Constants.ROOT_ULLON && requestParams.get("lrlon") > Constants.ROOT_LRLON) {
-            results.put("render_grid", findTiles(requestParams, (Integer) results.get("depth"), results));
-            results.put("raster_ul_lon", Constants.ROOT_LRLON - (Constants.ROOT_LRLON - Constants.ROOT_ULLON) / Math.pow(2, (Integer) results.get("depth")));
-            results.put("raster_ul_lat", Constants.ROOT_LRLAT + (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) / Math.pow(2, (Integer) results.get("depth")));
-            results.put("raster_lr_lon", Constants.ROOT_LRLON);
-            results.put("raster_lr_lat", Constants.ROOT_LRLAT);
-            return results;
-        }
-
-        /**
-         * Condition 3:
-         * the upper side of the query box is beyond the upper side of the map
-         * the lower side of the query box is within the map
-         */
-        if (requestParams.get("ullat") <= Constants.ROOT_ULLAT && requestParams.get("lrlat") < Constants.ROOT_LRLAT) {
-            results.put("render_grid", findTiles(requestParams, (Integer) results.get("depth"), results));
-            results.put("raster_ul_lon", Constants.ROOT_ULLON);
-            results.put("raster_ul_lat", Constants.ROOT_ULLAT);
-            results.put("raster_lr_lon", Constants.ROOT_LRLON);
-            results.put("raster_lr_lat", Constants.ROOT_ULLAT - (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) / Math.pow(2, (Integer) results.get("depth")));
-            return results;
-        }
-
-        /**
-         * Condition 4:
-         * the lower side of the query box is beyond the lower side of the map
-         * the upper side of the query box is within the map
-         */
-        if (requestParams.get("ullat") > Constants.ROOT_LRLAT && requestParams.get("lrlat") >= Constants.ROOT_LRLAT) {
-            results.put("render_grid", findTiles(requestParams, (Integer) results.get("depth"), results));
-            results.put("raster_ul_lon", Constants.ROOT_ULLON);
-            results.put("raster_ul_lat", Constants.ROOT_LRLAT + (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) / Math.pow(2, (Integer) results.get("depth")));
-            results.put("raster_lr_lon", Constants.ROOT_LRLON);
-            results.put("raster_lr_lat", Constants.ROOT_LRLAT);
-            return results;
-        }
-
-
-        return null;
-    }
-
 
     @Override
     protected Object buildJsonResponse(Map<String, Object> result) {
