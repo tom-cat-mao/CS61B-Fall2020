@@ -16,13 +16,13 @@ import java.util.Map;
  */
 public class AugmentedStreetMapGraph extends StreetMapGraph {
 
+    private List<Point> points;
 
     public AugmentedStreetMapGraph(String dbPath) {
         super(dbPath);
-        // You might find it helpful to uncomment the line below:
         List<Node> nodes = this.getNodes();
 
-        List <Point> points = new LinkedList<>();
+        points = new LinkedList<>();
         for (Node node : nodes) {
             if (node.name() != null) {
                 points.add(convertNodeToPoint(node));
