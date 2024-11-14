@@ -110,7 +110,8 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
 
     /**
      * find the start and end of the query box
-     * @param requestParams, depth
+     * @param requestParams 
+     * @param depth the depth of the query box
      * @return xStart, yStart, xEnd, yEnd in a array
      */
     private int[] XYBoard(final Map<String, Double> requestParams, final int depth) {
@@ -124,7 +125,8 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
 
     /**
      * transfer the XYBoard to rasterBoard
-     * @param XYBoard, depth
+     * @param XYBoard the whole xy board
+     * @param depth the depth of the query box
      * @return rasterBoard in a array
      */
     private double[] rasterBoard(final int[] XYBoard, final int depth) {
@@ -138,7 +140,7 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
 
     /**
      * get the value result
-     * @param requestParams
+     * @param requestParams the request params
      * @return result
      */
     private Map<String, Object> getValueResult(final Map<String, Double> requestParams) {
@@ -162,7 +164,8 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
      * with xStart, yStart, xEnd, yEnd
      * and depth
      * add the images to the render_grid
-     * @param depth, XYBoard
+     * @param depth the depth of the query box
+     * @param XYBoard the whole xy board
      * return tiles in a 2D array
      */
     private String[][] findTiles(final int depth, final int[] XYBoard) {
@@ -200,21 +203,6 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
         return depth;
     }
 
-//    /**
-//     * find out whether the request is valid
-//     * include the query box that doesn't make any sense
-//     * and the query box is completely outside of the map
-//     * @param requestParams
-//     * @return boolean
-//     */
-//    private boolean isValueQuery(final Map<String, Double> requestParams) {
-//        return requestParams != null
-//                && requestParams.get("ullat") >= requestParams.get("lrlat")
-//                && requestParams.get("ullon") <= requestParams.get("lrlon")
-//                &&
-//                );
-//    }
-//
     /**
      * find out whether the request is valid
      * include the query box that doesn't make any sense

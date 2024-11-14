@@ -22,11 +22,16 @@ public class Router {
      * @param destlat The latitude of the destination location.
      * @return A list of node id's in the order visited on the shortest path.
      */
-    public static List<Long> shortestPath(AugmentedStreetMapGraph g, double stlon, double stlat,
-                                          double destlon, double destlat) {
-        //long src = g.closest(stlon, stlat);
-        //long dest = g.closest(destlon, destlat);
-        //return new WeirdSolver<>(g, src, dest, 20).solution();
+    public static List<Long> shortestPath(
+        AugmentedStreetMapGraph g,
+        double stlon,
+        double stlat,
+        double destlon,
+        double destlat
+    ) {
+        long src = g.closest(stlon, stlat);
+        long dest = g.closest(destlon, destlat);
+        return new WeirdSolver<>(g, src, dest, 20).solution();
         return null;
     }
 
@@ -38,8 +43,10 @@ public class Router {
      * @return A list of NavigatiionDirection objects corresponding to the input
      * route.
      */
-    public static List<NavigationDirection> routeDirections(AugmentedStreetMapGraph g,
-                                                            List<Long> route) {
+    public static List<NavigationDirection> routeDirections(
+        AugmentedStreetMapGraph g,
+        List<Long> route
+    ) {
         /* fill in for part IV */
         return null;
     }
@@ -99,8 +106,12 @@ public class Router {
         }
 
         public String toString() {
-            return String.format("%s on %s and continue for %.3f miles.",
-                    DIRECTIONS[direction], way, distance);
+            return String.format(
+                "%s on %s and continue for %.3f miles.",
+                DIRECTIONS[direction],
+                way,
+                distance
+            );
         }
 
         /**
@@ -110,7 +121,8 @@ public class Router {
          * @return A NavigationDirection object representing the input string.
          */
         public static NavigationDirection fromString(String dirAsString) {
-            String regex = "([a-zA-Z\\s]+) on ([\\w\\s]*) and continue for ([0-9\\.]+) miles\\.";
+            String regex =
+                "([a-zA-Z\\s]+) on ([\\w\\s]*) and continue for ([0-9\\.]+) miles\\.";
             Pattern p = Pattern.compile(regex);
             Matcher m = p.matcher(dirAsString);
             NavigationDirection nd = new NavigationDirection();
@@ -150,7 +162,11 @@ public class Router {
         }
 
         /** Checks that a value is between the given ranges.*/
-        private static boolean numInRange(double value, double from, double to) {
+        private static boolean numInRange(
+            double value,
+            double from,
+            double to
+        ) {
             return value >= from && value <= to;
         }
 
@@ -163,19 +179,25 @@ public class Router {
          * @param currBearing A double in [0, 360.0]
          * @return the Navigation Direction type
          */
-        private static int getDirection(double prevBearing, double currBearing) {
+        private static int getDirection(
+            double prevBearing,
+            double currBearing
+        ) {
             double absDiff = Math.abs(currBearing - prevBearing);
             if (numInRange(absDiff, 0.0, 15.0)) {
                 return NavigationDirection.STRAIGHT;
-
             }
-            if ((currBearing > prevBearing && absDiff < 180.0)
-                    || (currBearing < prevBearing && absDiff > 180.0)) {
+            if (
+                (currBearing > prevBearing && absDiff < 180.0) ||
+                (currBearing < prevBearing && absDiff > 180.0)
+            ) {
                 // we're going right
                 if (numInRange(absDiff, 15.0, 30.0) || absDiff > 330.0) {
                     // bearmaps.proj2d.example of high abs diff is prev = 355 and curr = 2
                     return NavigationDirection.SLIGHT_RIGHT;
-                } else if (numInRange(absDiff, 30.0, 100.0) || absDiff > 260.0) {
+                } else if (
+                    numInRange(absDiff, 30.0, 100.0) || absDiff > 260.0
+                ) {
                     return NavigationDirection.RIGHT;
                 } else {
                     return NavigationDirection.SHARP_RIGHT;
@@ -184,7 +206,9 @@ public class Router {
                 // we're going left
                 if (numInRange(absDiff, 15.0, 30.0) || absDiff > 330.0) {
                     return NavigationDirection.SLIGHT_LEFT;
-                } else if (numInRange(absDiff, 30.0, 100.0) || absDiff > 260.0) {
+                } else if (
+                    numInRange(absDiff, 30.0, 100.0) || absDiff > 260.0
+                ) {
                     return NavigationDirection.LEFT;
                 } else {
                     return NavigationDirection.SHARP_LEFT;
@@ -192,13 +216,14 @@ public class Router {
             }
         }
 
-
         @Override
         public boolean equals(Object o) {
             if (o instanceof NavigationDirection) {
-                return direction == ((NavigationDirection) o).direction
-                    && way.equals(((NavigationDirection) o).way)
-                    && distance == ((NavigationDirection) o).distance;
+                return (
+                    direction == ((NavigationDirection) o).direction &&
+                    way.equals(((NavigationDirection) o).way) &&
+                    distance == ((NavigationDirection) o).distance
+                );
             }
             return false;
         }
@@ -221,7 +246,12 @@ public class Router {
          * @param latW  The latitude of the second vertex.
          * @return The initial bearing between the vertices.
          */
-        public static double bearing(double lonV, double lonW, double latV, double latW) {
+        public static double bearing(
+            double lonV,
+            double lonW,
+            double latV,
+            double latW
+        ) {
             double phi1 = Math.toRadians(latV);
             double phi2 = Math.toRadians(latW);
             double lambda1 = Math.toRadians(lonV);

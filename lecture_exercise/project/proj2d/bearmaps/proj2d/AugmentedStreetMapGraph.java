@@ -1,11 +1,11 @@
 package bearmaps.proj2d;
 
-import bearmaps.proj2c.streetmap.StreetMapGraph;
+import bearmaps.proj2ab.Point;
 import bearmaps.proj2c.streetmap.Node;
-
+import bearmaps.proj2c.streetmap.StreetMapGraph;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.LinkedList;
 
 /**
  * An augmented graph that is more powerful that a standard StreetMapGraph.
@@ -16,12 +16,28 @@ import java.util.LinkedList;
  */
 public class AugmentedStreetMapGraph extends StreetMapGraph {
 
+
     public AugmentedStreetMapGraph(String dbPath) {
         super(dbPath);
         // You might find it helpful to uncomment the line below:
-        // List<Node> nodes = this.getNodes();
+        List<Node> nodes = this.getNodes();
+
+        List <Point> points = new LinkedList<>();
+        for (Node node : nodes) {
+            if (node.name() != null) {
+                points.add(convertNodeToPoint(node));
+            }
+        }
     }
 
+    /**
+     * convert a node to a point
+     * @param node the node to be converted
+     * @return the point converted from the node
+     */
+    private Point convertNodeToPoint(Node node) {
+        return new Point(node.lon(), node.lat());
+    }
 
     /**
      * For Project Part II
@@ -33,7 +49,6 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
     public long closest(double lon, double lat) {
         return 0;
     }
-
 
     /**
      * For Project Part III (gold points)
@@ -64,7 +79,6 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
         return new LinkedList<>();
     }
 
-
     /**
      * Useful for Part III. Do not modify.
      * Helper to process strings into their "cleaned" form, ignoring punctuation and capitalization.
@@ -74,5 +88,4 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
     private static String cleanString(String s) {
         return s.replaceAll("[^a-zA-Z ]", "").toLowerCase();
     }
-
 }
