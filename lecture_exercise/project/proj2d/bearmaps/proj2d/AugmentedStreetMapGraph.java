@@ -6,6 +6,7 @@ import bearmaps.proj2c.streetmap.StreetMapGraph;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 /**
  * An augmented graph that is more powerful that a standard StreetMapGraph.
@@ -17,9 +18,11 @@ import java.util.Map;
 public class AugmentedStreetMapGraph extends StreetMapGraph {
 
     private List<Point> points;
+    private Map<Point, Node> pointToNode;
 
     public AugmentedStreetMapGraph(String dbPath) {
         super(dbPath);
+        pointToNode = new HashMap<>();
         List<Node> nodes = this.getNodes();
 
         points = new LinkedList<>();
