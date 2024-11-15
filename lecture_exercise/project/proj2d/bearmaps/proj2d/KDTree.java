@@ -14,6 +14,13 @@ public class KDTree implements PointSet {
     private static final boolean VERTICAL = true; // a boolean indicating whether the node is vertical
 
     /**
+     * Instantiates a new KDTree.
+     */
+    public KDTree() {
+        root = null;
+    }
+
+    /**
      * Instantiates a new KDTree with a list of points.
      * @param points A list of points to add to the KDTree.
      */
@@ -52,23 +59,16 @@ public class KDTree implements PointSet {
     }
 
     /**
-     * A private class representing a comparator for KDNodes.
+     * Compares two KDNodes.
+     * @param a The first KDNode to compare which decides the order.
+     * @param b The second KDNode to compare.
+     * @return The difference between the two KDNodes.
      */
-    public class KDNodeComparator implements Comparator<KDNode> {
-
-        /**
-         * Compares two KDNodes.
-         * @param a The first KDNode to compare which decides the order.
-         * @param b The second KDNode to compare.
-         * @return A negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
-         */
-        @Override
-        public int compare(KDNode a, KDNode b) {
-            if (a.isVertical) {
-                return Double.compare(a.getX(), b.getX());
-            } else {
-                return Double.compare(a.getY(), b.getY());
-            }
+    private Double compare(KDNode a, KDNode b) {
+        if (a.isVertical) {
+            return a.getX() - b.getX();
+        } else {
+            return a.getY() - b.getY();
         }
     }
 
@@ -77,7 +77,7 @@ public class KDTree implements PointSet {
      * @param point The point to insert.
      */
     public void insert(Point point) {
-        insert_p(root, point, VERTICAL);
+        root = insert_p(root, point, VERTICAL);
     }
 
     /**
@@ -129,11 +129,7 @@ public class KDTree implements PointSet {
      * @param best The best point found so far.
      * @return The nearest point in the KDTree.
      */
-    private KDNode nearest_p(
-            KDNode root,
-            KDNode goal,
-            KDNode best
-    ) {
+    private KDNode nearest_p(KDNode root, KDNode goal, KDNode best) {
         KDNode goodSide; // the good side of the KDNode
         KDNode badSide; // the bad side of the KDNode
 
@@ -149,14 +145,12 @@ public class KDTree implements PointSet {
             best = root;
         }
 
-        Comparator<KDNode> comparator = new KDNodeComparator();
-
         /* split the KDTree into two sides
          * if the goal is on the good side
          * search the good side first
          * then search the bad side
          */
-        if (comparator.compare(root, goal) > 0) {
+        if (compare(root, goal) > 0) {
             goodSide = root.left;
             badSide = root.right;
         } else {
@@ -169,7 +163,9 @@ public class KDTree implements PointSet {
         /* if the distance between the goal and the best point is greater than the distance between the goal and the current point
          * search the bad side
          */
-
+        if (KDNode.distance(best, goal) > Math.pow(compare(root, goal), 2)) {
+            best = nearest_p(badSide, goal, best);
+        }
         return best;
     }
 }

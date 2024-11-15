@@ -17,18 +17,22 @@ import java.util.HashMap;
  */
 public class AugmentedStreetMapGraph extends StreetMapGraph {
 
-    private List<Point> points;
-    private Map<Point, Node> pointToNode;
+    private Map<Point, Node> pointToNode; // set a map to store the point and the corresponding node
+    private KDTree kdTree; // set a KDTree to store the points
 
     public AugmentedStreetMapGraph(String dbPath) {
         super(dbPath);
         pointToNode = new HashMap<>();
         List<Node> nodes = this.getNodes();
+        kdTree = new KDTree();
+        Point point;
 
-        points = new LinkedList<>();
+        /* insert nodes that have neighbors into the KDTree */
         for (Node node : nodes) {
-            if (node.name() != null) {
-                points.add(convertNodeToPoint(node));
+            if (node.name() != null && !this.neighbors(node.id()).isEmpty()) {
+                point = convertNodeToPoint(node);
+                pointToNode.put(point, node);
+                kdTree.insert(point);
             }
         }
     }
@@ -50,7 +54,7 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
      * @return The id of the node in the graph closest to the target.
      */
     public long closest(double lon, double lat) {
-        return 0;
+        return pointToNode.get(kdTree.nearest(lon, lat)).id();
     }
 
     /**
