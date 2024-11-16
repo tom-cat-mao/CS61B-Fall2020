@@ -32,12 +32,12 @@ public class KDTree implements PointSet {
     /**
      * A private class representing a node in the KDTree.
      */
-    private static class KDNode {
+    public static class KDNode {
 
-        private Point point;
+        private final Point point;
         private KDNode left;
         private KDNode right;
-        private boolean isVertical;
+        private final boolean isVertical;
 
         public KDNode(Point point, boolean isVertical) {
             this.isVertical = isVertical;
@@ -63,7 +63,7 @@ public class KDTree implements PointSet {
      * @param b The second KDNode to compare.
      * @return The difference between the two KDNodes.
      */
-    private Double compare(KDNode a, KDNode b) {
+    public double compare(KDNode a, KDNode b) {
         if (a.isVertical) {
             return a.getX() - b.getX();
         } else {
@@ -87,13 +87,13 @@ public class KDTree implements PointSet {
      * @return The root of the KDTree with the point inserted.
      */
     private KDNode insert_p(KDNode root, Point point, boolean isVertical) {
-        /* if find the leaf node, insert the point */
+        /* if you find the leaf node, insert the point */
         if (root == null) {
             return new KDNode(point, isVertical);
         }
 
         /* if it's vertical
-         * compare its lontitude
+         * compare its longitude
          * else compare its latitude
          */
         if (isVertical) {
@@ -120,7 +120,7 @@ public class KDTree implements PointSet {
      */
     @Override
     public Point nearest(double x, double y) {
-        return null;
+        return nearest_p(root, new KDNode(new Point(x, y), VERTICAL), root).point;
     }
 
     /**
@@ -132,7 +132,7 @@ public class KDTree implements PointSet {
         KDNode goodSide; // the good side of the KDNode
         KDNode badSide; // the bad side of the KDNode
 
-        /* if get to the leaf node, return the point */
+        /* if you get to the leaf node, return the point */
         if (root == null) {
             return best;
         }

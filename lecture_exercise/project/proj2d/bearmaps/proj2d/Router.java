@@ -29,9 +29,9 @@ public class Router {
         double destlon,
         double destlat
     ) {
-        long src = g.closest(stlon, stlat);
-        long dest = g.closest(destlon, destlat);
-        return new WeirdSolver<>(g, src, dest, 20).solution();
+//        long src = g.closest(stlon, stlat);
+//        long dest = g.closest(destlon, destlat);
+//        return new WeirdSolver<>(g, src, dest, 20).solution();
         return null;
     }
 
