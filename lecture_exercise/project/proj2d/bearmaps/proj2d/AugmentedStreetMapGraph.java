@@ -29,7 +29,7 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
 
         /* insert nodes that have neighbors into the KDTree */
         for (Node node : nodes) {
-            if (node.name() != null && !this.neighbors(node.id()).isEmpty()) {
+            if (node.name() != null /*&& !this.neighbors(node.id()).isEmpty()*/) {
                 point = convertNodeToPoint(node);
                 pointToNode.put(point, node);
                 kdTree.insert(point);

@@ -5,7 +5,6 @@ package bearmaps.proj2d;
 
 import bearmaps.proj2ab.Point;
 import bearmaps.proj2ab.PointSet;
-import java.util.Comparator;
 import java.util.List;
 
 public class KDTree implements PointSet {
