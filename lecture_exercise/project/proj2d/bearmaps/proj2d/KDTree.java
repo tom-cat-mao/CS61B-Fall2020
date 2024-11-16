@@ -32,7 +32,7 @@ public class KDTree implements PointSet {
     /**
      * A private class representing a node in the KDTree.
      */
-    public static class KDNode {
+    private static class KDNode {
 
         private final Point point;
         private KDNode left;
@@ -63,7 +63,7 @@ public class KDTree implements PointSet {
      * @param b The second KDNode to compare.
      * @return The difference between the two KDNodes.
      */
-    public double compare(KDNode a, KDNode b) {
+    private double compare(KDNode a, KDNode b) {
         if (a.isVertical) {
             return a.getX() - b.getX();
         } else {

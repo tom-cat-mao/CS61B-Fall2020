@@ -25,12 +25,14 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
         pointToNode = new HashMap<>();
         List<Node> nodes = this.getNodes();
         kdTree = new KDTree();
-        Point point;
 
         /* insert nodes that have neighbors into the KDTree */
         for (Node node : nodes) {
-            if (node.name() != null /*&& !this.neighbors(node.id()).isEmpty()*/) {
-                point = convertNodeToPoint(node);
+            if (
+                    node.name() != null &&
+                    !neighbors(node.id()).isEmpty()
+            ) {
+                Point point = convertNodeToPoint(node);
                 pointToNode.put(point, node);
                 kdTree.insert(point);
             }
