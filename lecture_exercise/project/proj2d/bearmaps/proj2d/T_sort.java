@@ -1,5 +1,9 @@
 /* the Topological sort class */
-import java.util.*;
+package bearmaps.proj2d;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 public class T_sort {
 
@@ -15,7 +19,12 @@ public class T_sort {
         return stack;
     }
 
-    private static <T> void dfs(Stack<T> stack, List<T> visited, Graph<T> graph, T node) {
+    private static <T> void dfs(
+        Stack<T> stack,
+        List<T> visited,
+        Graph<T> graph,
+        T node
+    ) {
         if (visited.contains(node)) {
             return;
         }
@@ -25,5 +34,4 @@ public class T_sort {
         }
         stack.push(node);
     }
-
 }

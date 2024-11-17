@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Trie {
 
@@ -63,6 +64,30 @@ public class Trie {
 
         public void addchild(char c) {
             children[c - 'a'] = new TrieNode();
+        }
+
+        /** use dfs to convert the Trie tree into a Linear List
+         * @return a list of nodes in dfs order
+         */
+        private List<TrieNode> dfs() {
+            Stack<TrieNode> stack = new Stack<>();
+
+            stack.push(this);
+
+            List<TrieNode> nodes = new ArrayList<>();
+
+            while (!stack.isEmpty()) {
+                TrieNode node = stack.pop();
+                nodes.add(node);
+
+                for (TrieNode child : node.children) {
+                    if (child != null) {
+                        stack.push(child);
+                    }
+                }
+            }
+
+            return nodes;
         }
     }
 
