@@ -3,10 +3,10 @@ package bearmaps.proj2d;
 import bearmaps.proj2ab.Point;
 import bearmaps.proj2c.streetmap.Node;
 import bearmaps.proj2c.streetmap.StreetMapGraph;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 /**
  * An augmented graph that is more powerful that a standard StreetMapGraph.
@@ -19,19 +19,18 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
 
     private Map<Point, Node> pointToNode; // set a map to store the point and the corresponding node
     private KDTree kdTree; // set a KDTree to store the points
+    private Trie trie; // set a trie to store the names of the nodes
 
     public AugmentedStreetMapGraph(String dbPath) {
         super(dbPath);
-        pointToNode = new HashMap<>();
         List<Node> nodes = this.getNodes();
+        pointToNode = new HashMap<>();
         kdTree = new KDTree();
+        trie = new Trie();
 
         /* insert nodes that have neighbors into the KDTree */
         for (Node node : nodes) {
-            if (
-                    node.name() != null &&
-                    !neighbors(node.id()).isEmpty()
-            ) {
+            if (node.name() != null && !neighbors(node.id()).isEmpty()) {
                 Point point = convertNodeToPoint(node);
                 pointToNode.put(point, node);
                 kdTree.insert(point);
@@ -68,6 +67,7 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
      * cleaned <code>prefix</code>.
      */
     public List<String> getLocationsByPrefix(String prefix) {
+        prefix = cleanString(prefix); // clean the prefix
         return new LinkedList<>();
     }
 
