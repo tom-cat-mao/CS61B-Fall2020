@@ -19,7 +19,9 @@
 package bearmaps.proj2d;
 
 import bearmaps.proj2c.streetmap.Node;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Trie {
@@ -47,20 +49,26 @@ public class Trie {
             isEnd = true;
         }
 
-        public TrieNode get(char ch) {
-            if (containsKey(ch)) {
-                return children[ch - 'a'];
+        public TrieNode get(char c) {
+            if (containsKey(c)) {
+                return children[c - 'a'];
             }
 
             return null;
         }
 
-        public boolean containsKey(char ch) {
-            return children[ch - 'a'] != null;
+        public boolean containsKey(char c) {
+            return children[c - 'a'] != null;
+        }
+
+        public void addchild(char c) {
+            children[c - 'a'] = new TrieNode();
         }
     }
 
-    public Trie() {}
+    public Trie() {
+        root = new TrieNode();
+    }
 
     /** insert a node into the Trie
      * @param node the node that will be inserted
@@ -76,7 +84,26 @@ public class Trie {
      * @return the root of the Trie
      */
     private TrieNode insert_r(TrieNode root, Queue<Character> characters) {
-        return null;
+        Character c = characters.poll(); // get the first character in the queue
+
+        /** if poll method returned null
+         * then just set the end and return the root
+         */
+        if (c.equals(null)) {
+            root.setEnd();
+            return root;
+        }
+
+        /** if the root don't have the child
+         * just add the child
+         */
+        if (!root.containsKey(c)) {
+            root.addchild(c);
+        }
+
+        root = insert_r(root.get(c), characters);
+
+        return root;
     }
 
     /** split name into a queue
@@ -90,4 +117,6 @@ public class Trie {
         }
         return characters;
     }
+
+    public void printTrie() {}
 }
