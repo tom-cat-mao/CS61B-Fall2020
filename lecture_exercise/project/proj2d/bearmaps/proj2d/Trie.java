@@ -34,10 +34,17 @@ public class Trie {
      */
     private class TrieNode {
 
+        private char c; // The character associated with the node
         private boolean isEnd; // Indicates if the node represents the end of a valid word
         private TrieNode[] children; // Array of child nodes, one for each possible character
 
         public TrieNode() {
+            isEnd = false;
+            children = new TrieNode[26];
+        }
+
+        public TrieNode(char c) {
+            this.c = c;
             isEnd = false;
             children = new TrieNode[26];
         }
@@ -63,31 +70,48 @@ public class Trie {
         }
 
         public void addchild(char c) {
-            children[c - 'a'] = new TrieNode();
+            children[c - 'a'] = new TrieNode(c);
         }
 
-        /** use dfs to convert the Trie tree into a Linear List
-         * @return a list of nodes in dfs order
+        public char getChar() {
+            return c;
+        }
+
+        /** use dfs to get all the words in the Trie Tree
+         * @return a list of words
          */
-        private List<TrieNode> dfs() {
-            Stack<TrieNode> stack = new Stack<>();
+        public List<String> getwords() {
+            List<String> words = new ArrayList<>();
+            this.dfs(words, "");
+            return words;
+        }
 
-            stack.push(this);
+        /** dfs algorithmm to store all the words in the Trie Tree
+         * @param words a list of stored words
+         * @param prefix current words
+         */
+        private void dfs(List<String> words, String prefix) {
+            if (this.isEnd()) {
+                words.add(prefix);
+            }
 
-            List<TrieNode> nodes = new ArrayList<>();
+            for (TrieNode child : this.getneighbors()) {
+                child.dfs(words, prefix + child.getChar());
+            }
+        }
 
-            while (!stack.isEmpty()) {
-                TrieNode node = stack.pop();
-                nodes.add(node);
-
-                for (TrieNode child : node.children) {
-                    if (child != null) {
-                        stack.push(child);
-                    }
+        /** get the children of the trinode
+         * @return a list of children nodes
+         */
+        private List<TrieNode> getneighbors() {
+            List<TrieNode> children = new ArrayList<>();
+            for (int i = 0; i < 26; i++) {
+                if (this.children[i] != null) {
+                    children.add(this.children[i]);
                 }
             }
 
-            return nodes;
+            return children;
         }
     }
 
@@ -143,5 +167,7 @@ public class Trie {
         return characters;
     }
 
-    public void printTrie() {}
+    public List<String> getwords() {
+        return root.getwords();
+    }
 }

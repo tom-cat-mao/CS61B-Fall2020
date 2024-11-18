@@ -1,5 +1,5 @@
 /* the Topological sort class */
-package bearmaps.proj2d;
+/*package bearmaps.proj2d;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,3 +35,4 @@ public class T_sort {
         stack.push(node);
     }
 }
+*/
