@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import bearmaps.proj2d.KDTree;
 
 /**
  * An augmented graph that is more powerful that a standard StreetMapGraph.
@@ -34,6 +35,13 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
                 Point point = convertNodeToPoint(node);
                 pointToNode.put(point, node);
                 kdTree.insert(point);
+            }
+        }
+
+        /* add all the name into the trie */
+        for (Node node : nodes) {
+            if (node.name() != null) {
+                trie.insert(cleanString(node.name()));
             }
         }
     }
@@ -67,7 +75,6 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
      * cleaned <code>prefix</code>.
      */
     public List<String> getLocationsByPrefix(String prefix) {
-        prefix = cleanString(prefix); // clean the prefix
         return new LinkedList<>();
     }
 
@@ -94,7 +101,7 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
      * @param s Input string.
      * @return Cleaned string.
      */
-    private static String cleanString(String s) {
+    public static String cleanString(String s) {
         return s.replaceAll("[^a-zA-Z ]", "").toLowerCase();
     }
 }

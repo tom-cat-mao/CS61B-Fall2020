@@ -15,7 +15,6 @@
 
 package bearmaps.proj2d;
 
-import bearmaps.proj2c.streetmap.Node;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,18 +54,18 @@ public class Trie {
 
         public TrieNode get(char c) {
             if (containsKey(c)) {
-                return children[c - 'a'];
+                return children[Character.toLowerCase(c) - 'a'];
             }
 
             return null;
         }
 
         public boolean containsKey(char c) {
-            return children[c - 'a'] != null;
+            return children[Character.toLowerCase(c) - 'a'] != null;
         }
 
         public void addchild(char c) {
-            children[c - 'a'] = new TrieNode(c);
+            children[Character.toLowerCase(c) - 'a'] = new TrieNode(c);
         }
 
         public char getChar() {
@@ -116,10 +115,10 @@ public class Trie {
     }
 
     /** insert a node into the Trie
-     * @param node the node that will be inserted
+     * @param name the node that will be inserted
      */
-    public void insert(Node node) {
-        Queue<Character> characters = split(node.name());
+    public void insert(String name) {
+        Queue<Character> characters = split(name);
         insert_r(root, characters);
     }
 
@@ -162,7 +161,17 @@ public class Trie {
         return characters;
     }
 
-    public List<String> getwords() {
-        return root.getwords();
+    /** Find the node that represents the given prefix in the Trie.
+     * @param prefix The prefix to search for.
+     * @return a list of strings that have the prefix
+     */
+    public List<String> nearby(String prefix) {
+        TrieNode node = find(root, prefix);
+        if (node == null) {
+            return null;
+        }
+
+        return null;
     }
+
 }
