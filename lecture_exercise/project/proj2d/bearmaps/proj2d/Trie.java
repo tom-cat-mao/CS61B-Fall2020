@@ -2,17 +2,14 @@
  * usually used to store a predictive text or autocomplete dictionary. Each node in the Trie represents
  * a single character of a string. The root node is associated with an empty string, and each subsequent
  * node represents a character of the string being stored.
- *
  * Key properties of a Trie:
  * - Each node can have multiple children, one for each possible character.
  * - The path from the root to a node represents a prefix of the strings stored in the Trie.
  * - Nodes can be marked to indicate the end of a valid string.
- *
  * Common operations on a Trie:
  * - Insertion: Adding a string to the Trie by creating nodes for each character if they do not already exist.
  * - Search: Checking if a string exists in the Trie by traversing the nodes corresponding to each character.
  * - Deletion: Removing a string from the Trie by unmarking the end node and potentially removing nodes that are no longer part of any other string.
- *
  * Tries are particularly useful for tasks involving prefix matching, such as autocomplete and spell checking.
  */
 
@@ -23,7 +20,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
 
 public class Trie {
 
@@ -100,7 +96,7 @@ public class Trie {
             }
         }
 
-        /** get the children of the trinode
+        /** get the children of the Trienode
          * @return a list of children nodes
          */
         private List<TrieNode> getneighbors() {
@@ -123,7 +119,8 @@ public class Trie {
      * @param node the node that will be inserted
      */
     public void insert(Node node) {
-        Queue<Character> characters = split(node.name);
+        Queue<Character> characters = split(node.name());
+        insert_r(root, characters);
     }
 
     /** the private insert method
@@ -132,15 +129,15 @@ public class Trie {
      * @param characters the list of characters
      * @return the root of the Trie
      */
-    private TrieNode insert_r(TrieNode root, Queue<Character> characters) {
+    private void insert_r(TrieNode root, Queue<Character> characters) {
         Character c = characters.poll(); // get the first character in the queue
 
         /** if poll method returned null
          * then just set the end and return the root
          */
-        if (c.equals(null)) {
+        if (c == null) {
             root.setEnd();
-            return root;
+            return;
         }
 
         /** if the root don't have the child
@@ -150,19 +147,17 @@ public class Trie {
             root.addchild(c);
         }
 
-        root = insert_r(root.get(c), characters);
-
-        return root;
+        insert_r(root.get(c), characters);
     }
 
     /** split name into a queue
-     * @param the name of the node
-     * @return the an arraylist of charactor
+     * @param name the name of the node
+     * @return an arraylist of charactor
      */
     private Queue<Character> split(String name) {
         Queue<Character> characters = new LinkedList<>();
-        for (char ch : name.toCharArray()) {
-            characters.add(ch);
+        for (char c : name.toCharArray()) {
+            characters.add(c);
         }
         return characters;
     }
