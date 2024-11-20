@@ -16,7 +16,7 @@ public class TrieTest {
         trie = new Trie();
     }
 
-    /*@Test
+    @Test
     public void testInsertAndSearch() {
         Node node1 = Node.of(1, 0.0, 0.0);
         node1.setName("BEE");
@@ -115,5 +115,5 @@ public class TrieTest {
 
         Trie.TrieNode node = trie.find(trie.root, "xyz");
         assertNull(node);
-    }*/
+    }
 }

@@ -54,30 +54,18 @@ public class Trie {
 
         public TrieNode get(char c) {
             if (containsKey(c)) {
-                if (c == ' ') {
-                    return children[26];
-                }
-
-                return children[Character.toLowerCase(c) - 'a'];
+                return children[getIndex(c)];
             }
 
             return null;
         }
 
         public boolean containsKey(char c) {
-            if (c == ' ') {
-                return true;
-            }
-            return children[Character.toLowerCase(c) - 'a'] != null;
+            return children[getIndex(c)] != null;
         }
 
-        public void addchild(char c) {
-            if (c == ' ') {
-                children[26] = new TrieNode(c);
-                return;
-            }
-
-            children[Character.toLowerCase(c) - 'a'] = new TrieNode(c);
+        public void add(char c) {
+            children[getIndex(c)] = new TrieNode(c);
         }
 
         public char getChar() {
@@ -120,6 +108,21 @@ public class Trie {
 
             return children;
         }
+
+        /** get the index of the character
+         * if the character is letter, use its lowercase to locate it from 0 to 25
+         * else if it's a special character
+         * just return 26 (so it will be put into the last position)
+         * @param c the character that need to be located
+         * @return the index of the character
+         */
+        private int getIndex(char c) {
+            if (Character.isLetter(c)) {
+                return Character.toLowerCase(c) - 'a';
+            }
+
+            return 26;
+        }
     }
 
     public Trie() {
@@ -155,7 +158,7 @@ public class Trie {
          * just add the child
          */
         if (!root.containsKey(c)) {
-            root.addchild(c);
+            root.add(c);
         }
 
         insert_r(root.get(c), characters);
