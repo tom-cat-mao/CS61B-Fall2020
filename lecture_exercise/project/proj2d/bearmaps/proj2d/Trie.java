@@ -35,13 +35,13 @@ public class Trie {
 
         public TrieNode() {
             isEnd = false;
-            children = new TrieNode[26];
+            children = new TrieNode[27];
         }
 
         public TrieNode(char c) {
             this.c = c;
             isEnd = false;
-            children = new TrieNode[26];
+            children = new TrieNode[27];
         }
 
         public boolean isEnd() {
@@ -54,6 +54,10 @@ public class Trie {
 
         public TrieNode get(char c) {
             if (containsKey(c)) {
+                if (c == ' ') {
+                    return children[26];
+                }
+
                 return children[Character.toLowerCase(c) - 'a'];
             }
 
@@ -61,10 +65,18 @@ public class Trie {
         }
 
         public boolean containsKey(char c) {
+            if (c == ' ') {
+                return true;
+            }
             return children[Character.toLowerCase(c) - 'a'] != null;
         }
 
         public void addchild(char c) {
+            if (c == ' ') {
+                children[26] = new TrieNode(c);
+                return;
+            }
+
             children[Character.toLowerCase(c) - 'a'] = new TrieNode(c);
         }
 
@@ -158,6 +170,7 @@ public class Trie {
         for (char c : name.toCharArray()) {
             characters.add(c);
         }
+
         return characters;
     }
 
@@ -171,7 +184,23 @@ public class Trie {
             return null;
         }
 
-        return null;
+        List<String> words = node.getwords();
+        for (int i = 0; i < words.size(); i++) {
+            words.set(i, prefix + words.get(i));
+        }
+
+        return words;
     }
 
+    private TrieNode find(TrieNode root, String prefix) {
+        for (char c : prefix.toCharArray()) {
+            if (!root.containsKey(c)) {
+                return null;
+            }
+
+            root = root.get(c);
+        }
+
+        return root;
+    }
 }

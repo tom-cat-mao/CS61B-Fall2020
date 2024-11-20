@@ -1,9 +1,11 @@
-/*package bearmaps.proj2d;
+package bearmaps.proj2d;
 
 import static org.junit.Assert.*;
+
+import bearmaps.proj2c.streetmap.Node;
 import org.junit.Before;
 import org.junit.Test;
-import bearmaps.proj2c.streetmap.Node;
+import java.util.List;
 
 public class TrieTest {
 
@@ -14,7 +16,7 @@ public class TrieTest {
         trie = new Trie();
     }
 
-    @Test
+    /*@Test
     public void testInsertAndSearch() {
         Node node1 = Node.of(1, 0.0, 0.0);
         node1.setName("BEE");
@@ -66,4 +68,52 @@ public class TrieTest {
 
         assertFalse(trie.getwords().contains("banana"));
     }
-}*/
+
+    @Test
+    public void testNearby() {
+        trie.insert("apple");
+        trie.insert("app");
+        trie.insert("apricot");
+        trie.insert("banana");
+
+        List<String> result = trie.nearby("app");
+        assertTrue(result.contains("apple"));
+        assertTrue(result.contains("app"));
+        assertFalse(result.contains("apricot"));
+        assertFalse(result.contains("banana"));
+    }
+
+    @Test
+    public void testNearbyNonExistentPrefix() {
+        trie.insert("apple");
+        trie.insert("app");
+        trie.insert("apricot");
+        trie.insert("banana");
+
+        List<String> result = trie.nearby("xyz");
+        assertNull(result);
+    }
+
+    @Test
+    public void testFind() {
+        trie.insert("apple");
+        trie.insert("app");
+        trie.insert("apricot");
+        trie.insert("banana");
+
+        Trie.TrieNode node = trie.find(trie.root, "app");
+        assertNotNull(node);
+        assertTrue(node.isEnd());
+    }
+
+    @Test
+    public void testFindNonExistentPrefix() {
+        trie.insert("apple");
+        trie.insert("app");
+        trie.insert("apricot");
+        trie.insert("banana");
+
+        Trie.TrieNode node = trie.find(trie.root, "xyz");
+        assertNull(node);
+    }*/
+}
