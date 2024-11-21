@@ -99,14 +99,14 @@ public class Trie {
          * @return a list of children nodes
          */
         private List<TrieNode> getneighbors() {
-            List<TrieNode> children = new ArrayList<>();
-            for (int i = 0; i < 26; i++) {
-                if (this.children[i] != null) {
-                    children.add(this.children[i]);
+            List<TrieNode> childnode = new ArrayList<>();
+            for (TrieNode child : children) {
+                if (child != null) {
+                    childnode.add(child);
                 }
             }
 
-            return children;
+            return childnode;
         }
 
         /** get the index of the character
@@ -117,7 +117,7 @@ public class Trie {
          * @return the index of the character
          */
         private int getIndex(char c) {
-            if (Character.isLetter(c)) {
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
                 return Character.toLowerCase(c) - 'a';
             }
 
@@ -182,10 +182,13 @@ public class Trie {
      * @return a list of strings that have the prefix
      */
     public List<String> nearby(String prefix) {
-        TrieNode node = find(root, prefix);
+        StringBuilder sb = new StringBuilder();
+        TrieNode node = find(root, prefix, sb);
         if (node == null) {
             return null;
         }
+
+        prefix = sb.toString();
 
         List<String> words = node.getwords();
         for (int i = 0; i < words.size(); i++) {
@@ -195,12 +198,19 @@ public class Trie {
         return words;
     }
 
-    private TrieNode find(TrieNode root, String prefix) {
+    /** private find method to find the node that represents the given prefix in the Trie.
+     * @param root the root of the Trie
+     * @param prefix the prefix to search for
+     * @param sb the stringbuilder to store the prefix
+     * @return the node that represents the given prefix in the Trie
+     */
+    private TrieNode find(TrieNode root, String prefix, StringBuilder sb) {
         for (char c : prefix.toCharArray()) {
             if (!root.containsKey(c)) {
                 return null;
             }
 
+            sb.append(root.get(c).getChar());
             root = root.get(c);
         }
 

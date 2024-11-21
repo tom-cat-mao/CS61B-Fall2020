@@ -41,7 +41,8 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
         /* add all the name into the trie */
         for (Node node : nodes) {
             if (node.name() != null) {
-                trie.insert(cleanString(node.name()));
+//                trie.insert(cleanString(node.name()));
+                trie.insert(node.name());
             }
         }
     }
